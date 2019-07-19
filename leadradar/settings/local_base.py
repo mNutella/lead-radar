@@ -1,5 +1,3 @@
-from decouple import Csv, config
-
 from .base import *  # noqa
 
 
