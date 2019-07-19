@@ -83,6 +83,15 @@ Will run django tests using `--keepdb` and `--parallel`. You may pass a path to 
 
 `make test someapp.tests.test_views`
 
+### Migrations
+Will run a command if you want remove all migrations:
+
+`make cleanmigs`
+
+Will run django tests using `--keepdb` and `--parallel`. You may pass a path to the desired test module in the make command. E.g.:
+
+`make test someapp.tests.test_views`
+
 ### Adding new pypi libs
 Just run `pipenv install LIB_NAME_ON_PYPI` and then `pipenv lock` to lock the version in Pipfile.lock file
 
