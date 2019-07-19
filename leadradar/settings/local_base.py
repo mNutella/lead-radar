@@ -1,3 +1,5 @@
+from decouple import Csv, config
+
 from .base import *  # noqa
 
 
@@ -9,8 +11,12 @@ SECRET_KEY = 'secret'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': base_dir_join('db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'lead_radar_db',
+        'USER': 'juser',
+        'PASSWORD': 'Klop1',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
