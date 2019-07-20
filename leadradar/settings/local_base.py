@@ -38,6 +38,12 @@ GRAPHENE = {
     'SCHEMA': 'leadradar.schema.schema' # Where your Graphene schema lives
 }
 
+# Cities Light
+INSTALLED_APPS += ('cities_light',)
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ru', 'en']
+# CITIES_LIGHT_INCLUDE_COUNTRIES = ['ru', 'en']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS', 'STLMT',]
+
 # Email
 INSTALLED_APPS += ('naomi',)
 EMAIL_BACKEND = 'naomi.mail.backends.naomi.NaomiBackend'
@@ -93,7 +99,12 @@ LOGGING = {
         'celery': {
             'handlers': ['console'],
             'level': 'INFO'
-        }
+        },
+        'cities_light': {
+            'handlers':['console'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
     }
 }
 
