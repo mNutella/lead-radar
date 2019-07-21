@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from .models import Job
+from .models import Job, Employer
 
-# class RecipeIngredientInline(admin.TabularInline):
-#     model = RecipeIngredient
 
+@admin.register(Employer)
+class JAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(Job)
-class RecipeAdmin(admin.ModelAdmin):
+class JobAdmin(admin.ModelAdmin):
     pass
-    # inlines = [RecipeIngredientInline]
