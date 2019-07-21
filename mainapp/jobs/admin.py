@@ -1,10 +1,14 @@
 from django.contrib import admin
 
-from .models import Job, Employer
+from .models import Job, Employer, Company
 
 
 @admin.register(Employer)
-class JAdmin(admin.ModelAdmin):
+class EmployerAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Job)
