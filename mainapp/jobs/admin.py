@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, Employer, Job, Plan
+from .models import Company, Employer, Job, Plan, Subscription
 
 
 @admin.register(Employer)
@@ -16,6 +16,12 @@ class CompanyAdmin(admin.ModelAdmin):
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    pass
+
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
