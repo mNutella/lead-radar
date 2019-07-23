@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'import_export',
 
     'common',
-    'mainapp.jobs',
     'users',
 ]
 

@@ -1,11 +1,15 @@
 import graphene
 from graphene_django.debug import DjangoDebug
 
-import users.schema
+from mainapp.jobs import schema as jobs_schema
 
 
-class Query(users.schema.Query, graphene.ObjectType):
+class Query(jobs_schema.Query, graphene.ObjectType):
     debug = graphene.Field(DjangoDebug, name="_debug")
 
 
-schema = graphene.Schema(query=Query)
+class Mutation(jobs_schema.Mutation, graphene.ObjectType):
+    debug = graphene.Field(DjangoDebug, name="_debug")
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
