@@ -38,6 +38,9 @@ GRAPHENE = {
     'SCHEMA': 'leadradar.schema.schema' # Where your Graphene schema lives
 }
 
+# Apps
+INSTALLED_APPS += ('mainapp.jobs',)
+
 # Cities Light
 INSTALLED_APPS += ('cities_light',)
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ru', 'en']
