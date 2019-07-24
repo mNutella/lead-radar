@@ -11,6 +11,11 @@ class Employer(models.Model):
     activated = models.BooleanField(default=False)
 
 
+class Role(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=250, blank=True, unique=True)
+
+
 class Company(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=300, blank=True)

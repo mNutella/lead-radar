@@ -2,7 +2,7 @@ import graphene
 from cities_light.models import City, Region
 from graphene_django import DjangoObjectType
 
-from .models import Company, Employer, Job, Plan, Subscription
+from .models import Company, Employer, Job, Plan, Subscription, Role
 from .constants import JobException
 
 
@@ -24,6 +24,11 @@ class PlanType(DjangoObjectType):
 class SubscriptionType(DjangoObjectType):
     class Meta:
         model = Subscription
+
+
+class RoleType(DjangoObjectType):
+    class Meta:
+        model = Role
 
 
 class RegionType(DjangoObjectType):
