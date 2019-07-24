@@ -40,6 +40,7 @@
     "react-apollo": "^2.5.8",
     "react-dom": "~16.8.6",
     "react-hot-loader": "~4.12.3",
+    "react-router-dom": "^5.0.1",
     "redux": "~4.0.0",
     "resolve-url-loader": "~3.0.0",
     "sass-loader": "~7.0.3",
