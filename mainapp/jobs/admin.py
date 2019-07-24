@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, Employer, Job, Plan, Subscription
+from .models import Company, Employer, Job, Plan, Subscription, Role
 
 
 @admin.register(Employer)
@@ -63,7 +63,6 @@ class RoleAdmin(admin.ModelAdmin):
 class JobAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "title",
         "get_company_name",
         "get_contact_email",
         "get_location",
@@ -74,8 +73,8 @@ class JobAdmin(admin.ModelAdmin):
     )
     list_filter = ("approved", "created_date")
     search_fields = (
+        "role__name",
         "contact_email__email",
-        "title",
         "company__name",
         "location__display_name",
     )

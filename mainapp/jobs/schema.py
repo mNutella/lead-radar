@@ -57,17 +57,15 @@ class Query(graphene.ObjectType):
 
 class CreateJob(graphene.Mutation):
     id = graphene.String()
-    title = graphene.String()
     company = graphene.Field(CompanyType)
     location = graphene.Field(CityType)
     link = graphene.String()
     contact_email = graphene.Field(EmployerType)
-    role = graphene.Field(Role)
+    role = graphene.Field(RoleType)
     approved = graphene.Boolean()
     created_date = graphene.DateTime()
 
     class Arguments:
-        title = graphene.String()
         company = graphene.String()
         location = graphene.String()
         link = graphene.String()
@@ -97,16 +95,15 @@ class CreateJob(graphene.Mutation):
             if not _city:
                 raise Exception(ModelExceptionTypes.CITY)
 
-            if not Role.objects.filter(id=kwargs.get("role")).exists():
-                raise Exception("Role doesn't exists!")
-
-            _role = Role.objects.get(id=kwargs.get("role"))
+            if Role.objects.filter(name=kwargs.get("role")).exists():
+                _role = Role.objects.get(name=kwargs.get("role"))
+            else:
+                _role = Role.objects.create(name=kwargs.get("role"))
 
             if not _role:
                 raise Exception(ModelExceptionTypes.ROLE)
 
             _job = Job.objects.create(
-                title=kwargs.get("title"),
                 company=_company,
                 location=_city,
                 link_to_desc=kwargs.get("link"),
@@ -120,7 +117,6 @@ class CreateJob(graphene.Mutation):
 
             return CreateJob(
                 id=_job.id,
-                title=_job.title,
                 company=_job.company,
                 location=_job.location,
                 link=_job.link_to_desc,

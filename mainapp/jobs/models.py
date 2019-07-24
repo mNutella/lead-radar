@@ -13,7 +13,7 @@ class Employer(models.Model):
 
 class Role(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=250, blank=True, unique=True)
+    name = models.CharField(max_length=250, blank=True)
 
 
 class Company(models.Model):
@@ -39,7 +39,6 @@ class Subscription(models.Model):
 class Job(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
     location = models.ForeignKey("cities_light.City", on_delete=models.CASCADE)
     link_to_desc = models.URLField(max_length=2000)
     contact_email = models.ForeignKey(Employer, on_delete=models.CASCADE)
