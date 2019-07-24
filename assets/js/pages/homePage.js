@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
-import App from '../app/example-app';
+import App from '../app/lead-radar';
 import client from '../apollo-client';
 
 
