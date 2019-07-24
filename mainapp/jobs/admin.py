@@ -20,7 +20,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "price", "days")
+    list_display = ("id", "name", "price", "days", "num_ads",)
     list_filter = ("name",)
     search_fields = ("name",)
     ordering = ("name",)

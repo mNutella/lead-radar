@@ -24,8 +24,9 @@ class Company(models.Model):
 class Plan(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=150, blank=True)
+    num_ads = models.IntegerField(default=0)
     price = models.IntegerField(default=0)
-    days = models.IntegerField(default=30)
+    days = models.IntegerField(default=0)
 
 
 class Subscription(models.Model):
