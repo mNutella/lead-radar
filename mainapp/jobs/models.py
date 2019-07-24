@@ -43,6 +43,6 @@ class Job(models.Model):
     location = models.ForeignKey("cities_light.City", on_delete=models.CASCADE)
     link_to_desc = models.URLField(max_length=2000)
     contact_email = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
     approved = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)

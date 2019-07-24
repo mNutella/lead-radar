@@ -52,6 +52,13 @@ class SubscriptionAdmin(admin.ModelAdmin):
     get_employer_email.short_description = "Employer"
 
 
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ("id", "name")
+    search_fields = ("name",)
+    ordering = ("name",)
+
+
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = (
@@ -60,7 +67,7 @@ class JobAdmin(admin.ModelAdmin):
         "get_company_name",
         "get_contact_email",
         "get_location",
-        "get_plan_name",
+        "get_role_name",
         "link_to_desc",
         "approved",
         "created_date",
@@ -92,8 +99,8 @@ class JobAdmin(admin.ModelAdmin):
     get_location.admin_order_field = "location"
     get_location.short_description = "Location"
 
-    def get_plan_name(self, obj):
-        return obj.plan.name
+    def get_role_name(self, obj):
+        return obj.role.name
 
-    get_plan_name.admin_order_field = "plan"
-    get_plan_name.short_description = "Plan"
+    get_role_name.admin_order_field = "role"
+    get_role_name.short_description = "role"

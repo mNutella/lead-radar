@@ -7,3 +7,4 @@ class JobException(IntEnum):
     CITY = 2
     PLAN = 3
     JOB = 4
+    ROLE = 5

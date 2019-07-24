@@ -38,6 +38,7 @@ class RegionType(DjangoObjectType):
 
 class CityType(DjangoObjectType):
     region = graphene.Field(RegionType)
+
     class Meta:
         model = City
 
@@ -61,7 +62,7 @@ class CreateJob(graphene.Mutation):
     location = graphene.Field(CityType)
     link = graphene.String()
     contact_email = graphene.Field(EmployerType)
-    plan = graphene.Field(PlanType)
+    role = graphene.Field(Role)
     approved = graphene.Boolean()
     created_date = graphene.DateTime()
 
@@ -71,7 +72,7 @@ class CreateJob(graphene.Mutation):
         location = graphene.String()
         link = graphene.String()
         contact_email = graphene.String()
-        plan = graphene.String()
+        role = graphene.String()
 
     def mutate(self, info, **kwargs):
         try:
@@ -96,13 +97,13 @@ class CreateJob(graphene.Mutation):
             if not _city:
                 raise Exception(JobException.CITY)
 
-            if not Plan.objects.filter(id=kwargs.get("plan")).exists():
-                raise Exception("Plan doesn't exists!")
+            if not Role.objects.filter(id=kwargs.get("role")).exists():
+                raise Exception("Role doesn't exists!")
 
-            _plan = Plan.objects.get(id=kwargs.get("plan"))
+            _role = Role.objects.get(id=kwargs.get("role"))
 
-            if not _plan:
-                raise Exception(JobException.PLAN)
+            if not _role:
+                raise Exception(JobException.ROLE)
 
             _job = Job.objects.create(
                 title=kwargs.get("title"),
@@ -110,7 +111,7 @@ class CreateJob(graphene.Mutation):
                 location=_city,
                 link_to_desc=kwargs.get("link"),
                 contact_email=_employer,
-                plan=_plan,
+                role=_role,
                 approved=False,
             )
 
@@ -124,7 +125,7 @@ class CreateJob(graphene.Mutation):
                 location=_job.location,
                 link=_job.link_to_desc,
                 contact_email=_job.contact_email,
-                plan=_job.plan,
+                role=_job.role,
                 approved=_job.approved,
                 created_date=_job.created_date,
             )
@@ -135,13 +136,12 @@ class CreateJob(graphene.Mutation):
                 raise Exception("Create 'Company' failed")
             elif error == JobException.CITY:
                 raise Exception("Create 'City' failed")
-            elif error == JobException.PLAN:
-                raise Exception("Create 'Plan' failed")
+            elif error == JobException.ROLE:
+                raise Exception("Create 'Role' failed")
             elif error == JobException.JOB:
                 raise Exception("Create 'Job' failed")
             else:
                 raise Exception("Created 'Other' failed | " + str(error))
-
 
 
 class Mutation(graphene.ObjectType):
