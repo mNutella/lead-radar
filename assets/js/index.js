@@ -1,4 +1,4 @@
 // import pages
 import 'bootstrap-includes';
-import 'pages/homePage';
+import 'pages/mainPage';
 import '../sass/style.scss';
