@@ -1,10 +1,11 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import { Home } from '../../pages';
 
 
 const App = () => (
   <div>
-    <h1>Hello, this is a Lead</h1>
+    <Home />
   </div>
 );
 
