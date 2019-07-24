@@ -1,7 +1,7 @@
 from enum import IntEnum
 
 
-class JobException(IntEnum):
+class ModelExceptionTypes(IntEnum):
     EMPLOYER = 0
     COMPANY = 1
     CITY = 2

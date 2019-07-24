@@ -3,7 +3,7 @@ from cities_light.models import City, Region
 from graphene_django import DjangoObjectType
 
 from .models import Company, Employer, Job, Plan, Subscription, Role
-from .constants import JobException
+from .constants import ModelExceptionTypes
 
 
 class EmployerType(DjangoObjectType):
@@ -82,7 +82,7 @@ class CreateJob(graphene.Mutation):
                 _employer = Employer.objects.create(email=kwargs.get("contact_email"))
 
             if not _employer:
-                raise Exception(JobException.EMPLOYER)
+                raise Exception(ModelExceptionTypes.EMPLOYER)
 
             if Company.objects.filter(name=kwargs.get("company")).exists():
                 _company = Company.objects.get(name=kwargs.get("company"))
@@ -90,12 +90,12 @@ class CreateJob(graphene.Mutation):
                 _company = Company.objects.create(name=kwargs.get("company"))
 
             if not _company:
-                raise Exception(JobException.COMPANY)
+                raise Exception(ModelExceptionTypes.COMPANY)
 
             _city = City.objects.get(id=kwargs.get("location"))
 
             if not _city:
-                raise Exception(JobException.CITY)
+                raise Exception(ModelExceptionTypes.CITY)
 
             if not Role.objects.filter(id=kwargs.get("role")).exists():
                 raise Exception("Role doesn't exists!")
@@ -103,7 +103,7 @@ class CreateJob(graphene.Mutation):
             _role = Role.objects.get(id=kwargs.get("role"))
 
             if not _role:
-                raise Exception(JobException.ROLE)
+                raise Exception(ModelExceptionTypes.ROLE)
 
             _job = Job.objects.create(
                 title=kwargs.get("title"),
@@ -116,7 +116,7 @@ class CreateJob(graphene.Mutation):
             )
 
             if not _job:
-                raise Exception(JobException.JOB)
+                raise Exception(ModelExceptionTypes.JOB)
 
             return CreateJob(
                 id=_job.id,
@@ -130,15 +130,15 @@ class CreateJob(graphene.Mutation):
                 created_date=_job.created_date,
             )
         except Exception as error:
-            if error == JobException.EMPLOYER:
+            if error == ModelExceptionTypes.EMPLOYER:
                 raise Exception("Create 'Employer' failed")
-            elif error == JobException.COMPANY:
+            elif error == ModelExceptionTypes.COMPANY:
                 raise Exception("Create 'Company' failed")
-            elif error == JobException.CITY:
+            elif error == ModelExceptionTypes.CITY:
                 raise Exception("Create 'City' failed")
-            elif error == JobException.ROLE:
+            elif error == ModelExceptionTypes.ROLE:
                 raise Exception("Create 'Role' failed")
-            elif error == JobException.JOB:
+            elif error == ModelExceptionTypes.JOB:
                 raise Exception("Create 'Job' failed")
             else:
                 raise Exception("Created 'Other' failed | " + str(error))
