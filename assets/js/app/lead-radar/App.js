@@ -8,17 +8,15 @@ import Navbar from './components/Navbar';
 
 const App = () => (
   <Router>
-    <div>
-      <Navbar />
-      {routes.map(route => (
-        <Route
-          key={`${route.path}-${getRandomID()}`}
-          path={route.path}
-          exact={route.exact}
-          component={route.component}
-        />
-      ))}
-    </div>
+    <Navbar />
+    {routes.map(route => (
+      <Route
+        key={`${route.path}-${getRandomID()}`}
+        path={route.path}
+        exact={route.exact}
+        component={route.component}
+      />
+    ))}
   </Router>
 );
 
