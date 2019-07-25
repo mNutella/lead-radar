@@ -1,6 +1,6 @@
 from django.conf import settings
 # from django.conf.urls import include, url  # django < 2.0
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
@@ -12,9 +12,9 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jsreverse/', django_js_reverse.views.urls_js, name='js_reverse'),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 
-    path('', TemplateView.as_view(template_name='mainapp/index.html'), name='home'),
-    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    re_path('', TemplateView.as_view(template_name='mainapp/index.html'), name='home'),
 ]
 
 if settings.DEBUG:
