@@ -1,10 +1,10 @@
 @import "../../sass/variables";
 
-.half-color {
+.half-bg {
   position: fixed;
   top: 0;
   right: 0;
-  width: 60%;
+  width: 55%;
   height: 100%;
-  background-color: $right_side_color;
+  background-color: $home_half_bg_color;
 }

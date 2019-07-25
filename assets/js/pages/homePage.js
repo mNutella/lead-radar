@@ -8,7 +8,7 @@ import './style.scss';
 const Home = () => {
   return (
     <main className="home-container">
-      <div className="half-color" />
+      <div className="half-bg" />
       <div className="container-fluid h-100">
         <div className="container h-100">
           <div className="row h-100 justify-content-center align-content-center">
