@@ -10,7 +10,7 @@ const Navbar = () => {
       <Link className="navbar-brand" to="/">Navbar</Link>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <Link className="nav-item nav-link active" to="/">Home</Link>
+          <Link className="nav-item nav-link" to="/">Home</Link>
           <Link className="nav-item nav-link" to="/post_job">Post</Link>
           <Link className="nav-item nav-link" to="/about">About</Link>
           <Link className="nav-item nav-link" to="/press">Press</Link>
