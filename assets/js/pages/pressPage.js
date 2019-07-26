@@ -69,7 +69,7 @@ const Press = () => {
             brand resources and product screenshots can be found here.
           </p>
           <div className="row">
-            <div className="col-3">
+            <div className="col-md-3">
               <button type="button" className="btn btn-primary btn-block p-3 shadow rounded-pill">Download Press Kit</button>
             </div>
           </div>
