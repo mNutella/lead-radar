@@ -1,6 +1,7 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
 // import { graphql } from 'react-apollo';
+import HalfColor from '../app/lead-radar/components/HalfColor';
 
 import './style.scss';
 
@@ -8,7 +9,7 @@ import './style.scss';
 const Home = () => {
   return (
     <main className="home-container">
-      <div className="half-bg" />
+      <HalfColor invert />
       <div className="container-fluid h-100">
         <div className="container h-100">
           <div className="row h-100 justify-content-center align-content-center">
