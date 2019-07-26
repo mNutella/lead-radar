@@ -1,7 +1,7 @@
 @import "../../sass/variables";
 @import "../../sass/vendor/bootstrap-includes";
 
-.about-container {
+.about-container, .press-container {
   margin-top: calc(#{$page_navbar_margin} + #{$nav-link-height} - #{$nav-link-padding-y * 2});
   background: url("../../images/page_figure.svg");
   background-repeat: no-repeat, repeat;
@@ -23,8 +23,14 @@
   h3 {
     margin: 60px 0 25px 0;
   }
+  h4 {
+    font-size: 1.2rem;
+  }
   p {
     margin-bottom: 20px;
+  }
+  button {
+    margin: 25px 0px;
   }
 }
 
