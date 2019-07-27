@@ -1,5 +1,5 @@
 import {
-  Home, Post, Press, About,
+  Home, Jobs, Post, Press, About,
 } from '../pages';
 
 
@@ -8,6 +8,10 @@ const routes = [
     path: '/',
     component: Home,
     exact: true,
+  },
+  {
+    path: '/jobs',
+    component: Jobs,
   },
   {
     path: '/post_job',
