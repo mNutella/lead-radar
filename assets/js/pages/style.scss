@@ -8,6 +8,17 @@
   background-position: center top;
 }
 
+.jobs-img {
+  height: 100%;
+  width: 100%;
+  padding-top: 100%;
+
+  background-image: url("../../images/career_2.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .header {
   h1, h4 {
     margin-top: 30px;
