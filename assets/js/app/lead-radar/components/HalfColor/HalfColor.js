@@ -8,13 +8,13 @@ const HalfColor = ({ horizontal, invert }) => (
   <div
     className="half-bg"
     style={{
-      // top: invert ? 'auto' : '0',
-      // bottom: invert ? '0' : 'auto',
-      // right: invert ? '0' : 'auto',
-      // left: invert ? 'auto' : '0',
+      top: invert ? 'auto' : '0',
+      bottom: invert ? '0' : 'auto',
+      right: invert ? '0' : 'auto',
+      left: invert ? 'auto' : '0',
       width: horizontal ? '100%' : '55%',
       height: horizontal ? '55%' : '100%',
-      transform: invert ? 'translateX(0)' : 'translateX(-100%)',
+      // transform: invert ? 'translateX(0)' : 'translateX(-100%)',
     }}
   />
 );
