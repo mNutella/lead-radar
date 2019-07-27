@@ -1,4 +1,29 @@
-html, body, #react-app, .home-container {
-  min-height: 100vh;
+html, body, #react-app, .home-container, .jobs-container {
+  min-height: 100vh !important;
   height: 100%;
+}
+
+.navbar {
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-brand, .navbar-text {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .nav-link {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .nav-item {
+    &:hover, &:focus {
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+  }
+  .navbar-collapse {
+    background-color: rgba(0,123,255, 1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
 }
