@@ -52,7 +52,7 @@ const Home = () => {
               <img className="img-fluid mb-4" src="https://www.kraken.com/_assets/files/2019-04/Advanced4.png" alt="finder" />
               <Button
                 route
-                link="/post_job"
+                link="/post"
                 size={6}
                 classes={['btn-light', 'lift', 'font-weight-bold', 'text-primary', 'rounded-pill']}
               >

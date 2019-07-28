@@ -19,7 +19,7 @@ const Navbar = ({ location }) => {
           <div className="navbar-nav">
             <Link className="nav-item nav-link" to="/">Home</Link>
             <Link className="nav-item nav-link" to="/jobs">Jobs</Link>
-            <Link className="nav-item nav-link" to="/post_job">Post</Link>
+            <Link className="nav-item nav-link" to="/post">Post</Link>
             <Link className="nav-item nav-link" to="/about">About</Link>
             <Link className="nav-item nav-link" to="/press">Press</Link>
           </div>

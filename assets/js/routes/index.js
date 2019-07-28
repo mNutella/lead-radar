@@ -14,7 +14,7 @@ const routes = [
     component: Jobs,
   },
   {
-    path: '/post_job',
+    path: '/post',
     component: Post,
   },
   {

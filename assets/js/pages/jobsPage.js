@@ -24,7 +24,7 @@ const Jobs = () => {
               </div>
               <Button
                 route
-                link="/post_job"
+                link="/post"
                 size={6}
                 classes={['btn-light', 'lift', 'font-weight-bold', 'text-primary', 'rounded-pill']}
               >
