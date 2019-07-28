@@ -3,6 +3,7 @@ import React from 'react';
 // import { graphql } from 'react-apollo';
 import HalfColor from '../app/lead-radar/components/HalfColor';
 import { JobItem, JobsList } from '../app/lead-radar/components/JobsList';
+import Button from '../app/lead-radar/components/Button';
 
 
 const Jobs = () => {
@@ -21,11 +22,14 @@ const Jobs = () => {
                   </h4>
                 </div>
               </div>
-              <div className="row justify-content-start">
-                <div className="col-sm-6">
-                  <button type="button" className="btn btn-light font-weight-bold text-primary btn-block p-3 shadow rounded-pill">Post Job</button>
-                </div>
-              </div>
+              <Button
+                route
+                link="/post_job"
+                size={6}
+                classes={['btn-light', 'lift', 'font-weight-bold', 'text-primary', 'rounded-pill']}
+              >
+                Post Job
+              </Button>
             </div>
             <div className="col-sm-5">
               <div className="header">

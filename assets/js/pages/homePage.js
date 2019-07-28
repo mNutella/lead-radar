@@ -2,6 +2,7 @@
 import React from 'react';
 // import { graphql } from 'react-apollo';
 import HalfColor from '../app/lead-radar/components/HalfColor';
+import Button from '../app/lead-radar/components/Button';
 
 import './style.scss';
 
@@ -37,12 +38,26 @@ const Home = () => {
                     </select>
                   </div>
                 </div>
-                <button type="button" className="btn btn-primary btn-lg shadow rounded-pill">Search</button>
+                <Button
+                  route
+                  link="/jobs"
+                  size={8}
+                  classes={['btn-primary', 'lift', 'font-weight-bold', 'rounded-pill']}
+                >
+                  Search
+                </Button>
               </form>
             </div>
             <div className="col">
               <img className="img-fluid mb-4" src="https://www.kraken.com/_assets/files/2019-04/Advanced4.png" alt="finder" />
-              <button type="button" className="btn btn-success btn-lg shadow rounded-pill">Post Job</button>
+              <Button
+                route
+                link="/post_job"
+                size={6}
+                classes={['btn-light', 'lift', 'font-weight-bold', 'text-primary', 'rounded-pill']}
+              >
+                Post Job
+              </Button>
             </div>
           </div>
         </div>

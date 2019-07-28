@@ -1,6 +1,7 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
 // import { graphql } from 'react-apollo';
+import Button from '../app/lead-radar/components/Button';
 
 
 const Press = () => {
@@ -68,11 +69,13 @@ const Press = () => {
             The most up-to-date company information,
             brand resources and product screenshots can be found here.
           </p>
-          <div className="row">
-            <div className="col-md-3">
-              <button type="button" className="btn btn-primary btn-block p-3 shadow rounded-pill">Download Press Kit</button>
-            </div>
-          </div>
+          <Button
+            link="#"
+            size={3}
+            classes={['btn-primary', 'lift', 'rounded-pill']}
+          >
+            Скачать Пресс-Кит
+          </Button>
           <h3>Audience</h3>
           <h4>Designers</h4>
           <p>

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Button from '../Button';
 
 import './style.scss';
 
@@ -28,13 +29,13 @@ const JobsItem = ({
           <p className="text-muted ">
             {city}
           </p>
-          <div className="row">
-            <div className="col-12">
-              <a className="btn btn-primary btn-block p-3" href={link} role="button">
-                Full Description
-              </a>
-            </div>
-          </div>
+          <Button
+            link="#"
+            size={12}
+            classes={['btn-primary', 'lift', 'rounded-pill']}
+          >
+            Посмотреть
+          </Button>
         </span>
       </div>
     </div>

@@ -3,6 +3,7 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
 // import { graphql } from 'react-apollo';
+import Button from '../app/lead-radar/components/Button';
 
 
 const Post = () => {
@@ -84,11 +85,13 @@ const Post = () => {
               After the payment is confirmed the job post will be published for 30 days.
               If you have any questions, don&#39;t hesitate to get in touch.
             </p>
-            <div className="row">
-              <div className="col-md-3">
-                <button type="button" className="btn btn-primary btn-block p-3 shadow rounded-pill">Submit</button>
-              </div>
-            </div>
+            <Button
+              link="#"
+              size={3}
+              classes={['btn-primary', 'lift', 'rounded-pill', 'mb-4']}
+            >
+              Скачать Пресс-Кит
+            </Button>
           </form>
         </div>
       </div>
