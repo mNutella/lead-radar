@@ -1,0 +1,15 @@
+.btn-primary-soft {
+  color: #377dff !important;
+  background: rgba(55, 125, 255, 0.1) !important;
+  border-color: transparent !important;
+  transition: all .25s ease !important;
+}
+
+.btn-wide-hover {
+  transition: all .25s ease !important;
+
+  &:hover {
+    color: #fff !important;
+    background-color: #1746e0 !important;
+  }
+}
