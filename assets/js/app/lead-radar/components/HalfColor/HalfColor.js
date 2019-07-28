@@ -6,7 +6,7 @@ import './style.scss';
 
 const HalfColor = ({ horizontal, invert }) => (
   <div
-    className="half-bg"
+    className="half-bg bg-primary"
     style={{
       top: invert ? 'auto' : '0',
       bottom: invert ? '0' : 'auto',
