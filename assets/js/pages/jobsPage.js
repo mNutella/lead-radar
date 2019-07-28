@@ -2,6 +2,7 @@
 import React from 'react';
 // import { graphql } from 'react-apollo';
 import HalfColor from '../app/lead-radar/components/HalfColor';
+import { JobItem, JobsList } from '../app/lead-radar/components/JobsList';
 
 
 const Jobs = () => {
@@ -28,23 +29,28 @@ const Jobs = () => {
             </div>
             <div className="col-sm-5">
               <div className="header">
-                <div className="form-group row">
-                  <div className="col-sm-12 mt-5">
+                <div className="form-group row mb-1 mt-2">
+                  <div className="col-sm-12">
                     <input
                       type="text"
-                      className="form-control form-control-lg shadow p-3 bg-white text-center rounded-pill border-0"
+                      className="form-control form-control-lg shadow p-3 bg-white text-center rounded border-0"
                       placeholder="Search by location, role or company"
                     />
                   </div>
                 </div>
               </div>
-              <div>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="shadow p-5 mb-5 mt-5 bg-white rounded">Standart</div>
-                  </div>
-                </div>
-              </div>
+              <JobsList>
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+                <JobItem />
+              </JobsList>
             </div>
           </div>
         </div>
