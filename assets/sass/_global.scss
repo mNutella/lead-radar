@@ -1,0 +1,8 @@
+.lift {
+  transition: box-shadow .25s ease, transform .25s ease !important;
+
+  &:focus, &:hover {
+    box-shadow: 0 1rem 2.5rem rgba(22,28,45,.1),0 .5rem 1rem -.75rem rgba(22,28,45,.1) !important;
+    transform: translateY(-3px);
+  }
+}
