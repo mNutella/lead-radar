@@ -3,6 +3,14 @@ html, body, #react-app, .home-container, .jobs-container {
   height: 100%;
 }
 
+.btn-primary {
+  background-color: #335eea;
+
+  &:hover {
+    background-color: #1746e0 !important;
+  }
+}
+
 .navbar {
   .navbar-toggler {
     border: none;
