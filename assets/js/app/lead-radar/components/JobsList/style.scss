@@ -1,0 +1,31 @@
+.jobs-list {
+  overflow-y: scroll;
+  height: calc(100vh - 60px);
+}
+
+.job-card {
+  background-color: beige;
+  transition: 0.3s ease-out;
+
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    text-decoration: none;
+
+    .btn {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+      transition: 0.3s ease-out;
+      transform: translateY(-4px);
+    }
+  }
+
+  & > a {
+    color: #495057;
+    text-decoration: none;
+
+    &:hover {
+      color: #495057;
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+}
