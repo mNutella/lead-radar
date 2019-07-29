@@ -13,8 +13,8 @@ const Jobs = () => {
       <div className="container-fluid h-100">
         <div className="container h-100">
           <div className="row h-100 mx-lg-5 justify-content-center">
-            <div className="col-sm-7 align-self-center">
-              <div className="row mb-5">
+            <div className="col-sm-6 align-self-center">
+              <div className="row mb-3">
                 <div className="col-sm-12 align-self-center text-md-left text-center">
                   <div className="jobs-img" />
                   <h4 className="mt-4 text-white">
@@ -31,7 +31,7 @@ const Jobs = () => {
                 Post Job
               </Button>
             </div>
-            <div className="col-sm-5">
+            <div className="col-sm-6">
               <div className="header">
                 <div className="form-group row mb-1 mt-2">
                   <div className="col-sm-12">
