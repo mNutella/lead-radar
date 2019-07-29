@@ -17,7 +17,6 @@ const Navbar = ({ location }) => {
         <Link className="navbar-brand" to="/">Navbar</Link>
         <div className="collapse navbar-collapse pl-3 rounded" id="main-navbar">
           <div className="navbar-nav">
-            <Link className="nav-item nav-link" to="/">Home</Link>
             <Link className="nav-item nav-link" to="/jobs">Jobs</Link>
             <Link className="nav-item nav-link" to="/post">Post</Link>
             <Link className="nav-item nav-link" to="/about">About</Link>
