@@ -12,8 +12,8 @@ const HalfColor = ({ horizontal, invert }) => (
       bottom: invert ? '0' : 'auto',
       right: invert ? '0' : 'auto',
       left: invert ? 'auto' : '0',
-      width: horizontal ? '100%' : '55%',
-      height: horizontal ? '55%' : '100%',
+      width: horizontal ? '100%' : '50%',
+      height: horizontal ? '50%' : '100%',
       // transform: invert ? 'translateX(0)' : 'translateX(-100%)',
     }}
   />
