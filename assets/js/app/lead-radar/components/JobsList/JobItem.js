@@ -13,30 +13,28 @@ const JobsItem = ({
   city,
   date,
 }) => (
-  <div className="job-card rounded mb-3">
-    <div className="card">
-      <span className="card-body">
-        <p className="text-muted">
-          <time dateTime="2019-05-31">{date}</time>
-        </p>
-        <h4>
-          {title}
-        </h4>
-        <h5 className="text-primary">
-          {company}
-        </h5>
-        <p className="text-muted ">
-          {city}
-        </p>
-        <Button
-          link={link}
-          size={12}
-          classes={['btn-primary', 'lift', 'rounded-pill']}
-        >
-          Посмотреть
-        </Button>
-      </span>
-    </div>
+  <div className="card job-card rounded mb-3">
+    <span className="card-body">
+      <p className="text-muted">
+        <time dateTime="2019-05-31">{date}</time>
+      </p>
+      <h4>
+        {title}
+      </h4>
+      <h5 className="text-primary">
+        {company}
+      </h5>
+      <p className="text-muted ">
+        {city}
+      </p>
+      <Button
+        link={link}
+        size={12}
+        classes={['btn-primary', 'lift', 'rounded-pill']}
+      >
+        Посмотреть
+      </Button>
+    </span>
   </div>
 );
 

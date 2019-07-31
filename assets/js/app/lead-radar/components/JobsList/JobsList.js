@@ -4,18 +4,14 @@ import React from 'react';
 import './style.scss';
 
 
-const JobsList = ({ children }) => {
-  return (
-    <div className="row jobs-list">
-      <div className="col-12 p-3">
-        {children}
-      </div>
-    </div>
-  );
-};
+const JobsList = ({ children }) => (
+  <React.Fragment>
+    {children}
+  </React.Fragment>
+);
 
 JobsList.defaultProps = {
-  children: '',
+  children: undefined,
 };
 
 JobsList.propTypes = {
