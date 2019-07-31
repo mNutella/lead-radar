@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import Button from '../app/lead-radar/components/Button';
 import HalfColor from '../app/lead-radar/components/HalfColor';
 import { JobItem, JobsList } from '../app/lead-radar/components/JobsList';
+import Search from '../app/lead-radar/components/Search';
 import JobsQuery from '../app/lead-radar/gql/all_jobs.gql';
 
 
@@ -16,21 +17,25 @@ const renderLoading = () => <div>Loading</div>;
 const renderError = () => <div>ERROR</div>;
 
 const renderList = jobs => (
-  <JobsList>
-    {jobs && (
-      jobs.map(
-        job => job && (
-          <JobItem
-            key={job.id.replace('-', '_')}
-            title={job.role.name}
-            company={job.company.name}
-            link={job.linkToDesc}
-            date={job.createdDate}
-            city={job.location.alternateNames}
-          />
-        ),
-      ))}
-  </JobsList>
+  <div className="row jobs-list-container">
+    <div className="col-12 p-3">
+      <JobsList>
+        {jobs && (
+          jobs.map(
+            job => job && (
+              <JobItem
+                key={job.id.replace('-', '_')}
+                title={job.role.name}
+                company={job.company.name}
+                link={job.linkToDesc}
+                date={job.createdDate}
+                city={job.location.alternateNames}
+              />
+            ),
+          ))}
+      </JobsList>
+    </div>
+  </div>
 );
 
 const renderReceived = (data, loading, error) => {
@@ -126,12 +131,11 @@ const Jobs = ({
               <div className="header">
                 <div className="form-group row mb-1 mt-2">
                   <div className="col-sm-12">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg shadow p-3 bg-white text-center rounded border-0"
-                      placeholder="Search by location, role or company"
+                    <Search
+                      defVal={query}
+                      ph="Search by location, role or company"
+                      found={filter.jobs ? filter.jobs.length : 0}
                       onChange={e => setVal(e.target.value)}
-                      defaultValue={query}
                     />
                   </div>
                 </div>

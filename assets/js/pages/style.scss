@@ -8,6 +8,11 @@
   background-position: center top;
 }
 
+.jobs-list-container {
+  overflow-y: scroll;
+  height: calc(100vh - 72px);
+}
+
 .jobs-img {
   height: 100%;
   width: 100%;
