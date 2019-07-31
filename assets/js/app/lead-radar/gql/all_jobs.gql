@@ -1,0 +1,24 @@
+query {
+  jobs {
+    id
+    role {
+      name
+    }
+    location {
+      displayName
+      alternateNames
+      region {
+        alternateNames
+      }
+    }
+    linkToDesc
+    company {
+      name
+    }
+    contactEmail {
+      email
+    }
+    approved
+    createdDate
+  }
+}
