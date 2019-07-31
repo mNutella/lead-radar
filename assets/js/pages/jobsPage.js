@@ -1,12 +1,103 @@
-// import PropTypes from 'prop-types';
-import React from 'react';
-// import { graphql } from 'react-apollo';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { graphql } from 'react-apollo';
+import Button from '../app/lead-radar/components/Button';
 import HalfColor from '../app/lead-radar/components/HalfColor';
 import { JobItem, JobsList } from '../app/lead-radar/components/JobsList';
-import Button from '../app/lead-radar/components/Button';
+import JobsQuery from '../app/lead-radar/gql/all_jobs.gql';
 
 
-const Jobs = () => {
+const withJobs = graphql(JobsQuery, {
+  props: ({ data, query }) => ({ ...data, query }),
+});
+
+const renderLoading = () => <div>Loading</div>;
+
+const renderError = () => <div>ERROR</div>;
+
+const renderList = jobs => (
+  <JobsList>
+    {jobs && (
+      jobs.map(
+        job => job && (
+          <JobItem
+            key={job.id.replace('-', '_')}
+            title={job.role.name}
+            company={job.company.name}
+            link={job.linkToDesc}
+            date={job.createdDate}
+            city={job.location.alternateNames}
+          />
+        ),
+      ))}
+  </JobsList>
+);
+
+const renderReceived = (data, loading, error) => {
+  if (loading) return renderLoading();
+  if (error) return renderError();
+
+  return renderList(data);
+};
+
+const useFilter = (query, jobs, loading, error) => {
+  const words = query.split(' ');
+  const [result, setResult] = useState([]);
+
+  useEffect(() => {
+    if (query !== ' ' && !loading && !error) {
+      const tempList = [];
+
+      jobs.forEach((job) => {
+        const lcQuery = query.toLowerCase();
+        const role = job.role.name.toLowerCase();
+        const company = job.company.name.toLowerCase();
+        const city = job.location.alternateNames.toLowerCase();
+        const region = job.location.region.alternateNames.toLowerCase();
+
+        if (role === lcQuery || company === lcQuery || city === lcQuery || region === lcQuery) {
+          tempList.push(job);
+        }
+      });
+
+      if (tempList.length !== 0) {
+        setResult(tempList);
+        return;
+      }
+
+      jobs.forEach((job) => {
+        const role = job.role.name.toLowerCase();
+        const company = job.company.name.toLowerCase();
+        const city = job.location.alternateNames.toLowerCase();
+        const region = job.location.region.alternateNames.toLowerCase();
+        const dups = [];
+
+        words.forEach((word) => {
+          const lcWord = word.toLowerCase();
+
+          if (!dups.includes(job.id) && (role.includes(lcWord)
+            || company.includes(lcWord)
+            || city.includes(lcWord)
+            || region.includes(lcWord))) {
+            tempList.push(job);
+            dups.push(job.id);
+          }
+        });
+      });
+
+      setResult(tempList);
+    } else setResult(jobs);
+  }, [query, jobs]);
+
+  return { jobs: result };
+};
+
+const Jobs = ({
+  loading, jobs, error, query,
+}) => {
+  const [val, setVal] = useState(query);
+  const filter = useFilter(val, jobs, loading, error);
+
   return (
     <main className="jobs-container">
       <HalfColor />
@@ -39,22 +130,13 @@ const Jobs = () => {
                       type="text"
                       className="form-control form-control-lg shadow p-3 bg-white text-center rounded border-0"
                       placeholder="Search by location, role or company"
+                      onChange={e => setVal(e.target.value)}
+                      defaultValue={query}
                     />
                   </div>
                 </div>
               </div>
-              <JobsList>
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-                <JobItem />
-              </JobsList>
+              {renderReceived(filter.jobs, loading, error)}
             </div>
           </div>
         </div>
@@ -63,4 +145,20 @@ const Jobs = () => {
   );
 };
 
-export default Jobs;
+Jobs.defaultProps = {
+  query: '',
+  loading: false,
+  jobs: undefined,
+  error: false,
+};
+
+Jobs.propTypes = {
+  query: PropTypes.string,
+  loading: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  jobs: PropTypes.any,
+  // eslint-disable-next-line react/forbid-prop-types
+  error: PropTypes.any,
+};
+
+export default withJobs(Jobs);
