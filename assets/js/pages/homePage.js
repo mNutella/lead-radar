@@ -1,13 +1,19 @@
-// import PropTypes from 'prop-types';
-import React from 'react';
-// import { graphql } from 'react-apollo';
-import HalfColor from '../app/lead-radar/components/HalfColor';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import Button from '../app/lead-radar/components/Button';
+import HalfColor from '../app/lead-radar/components/HalfColor';
+import Search from '../app/lead-radar/components/Search';
 
 import './style.scss';
 
 
-const Home = () => {
+const Home = ({ history }) => {
+  const [val, setVal] = useState('');
+
+  const handleSearch = () => {
+    history.push({ pathname: '/jobs', state: { query: val } });
+  };
+
   return (
     <main className="home-container">
       <HalfColor invert />
@@ -19,18 +25,18 @@ const Home = () => {
               <form>
                 <div className="form-group row">
                   <div className="col-9">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg shadow p-3 bg-white rounded border-0"
-                      placeholder="Search by location, role or company"
+                    <Search
+                      ph="Search by location, role or company"
+                      onChange={e => setVal(e.target.value)}
                     />
                   </div>
                 </div>
                 <Button
-                  route
-                  link="/jobs"
+                  def
+                  type="submit"
                   size={6}
                   classes={['btn-primary', 'lift', 'font-weight-bold', 'rounded-pill']}
+                  onClick={() => handleSearch()}
                 >
                   Search
                 </Button>
@@ -53,5 +59,15 @@ const Home = () => {
     </main>
   );
 };
+
+Home.defaultProps = {
+  history: undefined,
+};
+
+Home.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.any,
+};
+
 
 export default Home;
