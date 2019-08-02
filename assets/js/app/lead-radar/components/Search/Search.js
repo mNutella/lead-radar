@@ -22,13 +22,15 @@ const Search = ({
       className="form-control border-0 px-1"
       onChange={onChange}
     />
-    <div className="input-group-append">
-      <span className="input-group-text bg-white border-0 pl-1">
-        <span className="h6 text-uppercase text-right text-muted d-none d-md-block mb-0">
-          {found} найдено
+    {found !== 0 && (
+      <div className="input-group-append">
+        <span className="input-group-text bg-white border-0 pl-1">
+          <span className="h6 text-uppercase text-right text-muted d-none d-md-block mb-0">
+            {found} найдено
+          </span>
         </span>
-      </span>
-    </div>
+      </div>
+    )}
   </div>
 );
 
