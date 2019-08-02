@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button';
+import Icon from '../Icon';
 
 import './style.scss';
 
@@ -33,6 +34,7 @@ const JobsItem = ({
         classes={['btn-primary', 'lift', 'rounded-pill']}
       >
         Посмотреть
+        <Icon name="arrow-right" size={16} classes={['pl-2']} />
       </Button>
     </span>
   </div>
