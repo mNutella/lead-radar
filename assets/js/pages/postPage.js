@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/label-has-for */
 // import PropTypes from 'prop-types';
 import React from 'react';
 // import { graphql } from 'react-apollo';
 import Button from '../app/lead-radar/components/Button';
+import Input from '../app/lead-radar/components/Input';
 
 
 const Post = () => {
@@ -24,53 +23,32 @@ const Post = () => {
             management design role (e.g., director, manager, lead, head, principal, vp, etc.).
           </p>
           <form>
-            <div className="form-group row">
-              <div className="col-md-6">
-                <label htmlFor="company">Company</label>
-                <input
-                  id="company"
-                  name="company-name"
-                  type="text"
-                  className="form-control form-control bg-light rounded-pill border-0"
-                  placeholder="Yandex"
+            <div className="row">
+              <div className="col-sm-8">
+                <Input
+                  label="Компания"
+                  ph="Yandex"
+                  classes={['bg-info']}
                 />
-              </div>
-            </div>
-            <div className="form-group row">
-              <div className="col-md-6">
-                <label htmlFor="job-title">Job title</label>
-                <input
-                  id="job-title"
-                  name="job-title-name"
-                  type="text"
-                  className="form-control form-control bg-light rounded-pill border-0"
-                  placeholder="Team Lead"
+                <Input
+                  label="Должность"
+                  ph="Руководитель отдела разработки Док-Станции"
+                  classes={['bg-info']}
                 />
-              </div>
-            </div>
-            <div className="form-group row">
-              <div className="col-md-6">
-                <label htmlFor="link-to-desc">Link to job description</label>
-                <input
-                  id="link-to-desc"
-                  name="link-to-desc-name"
-                  type="text"
-                  className="form-control form-control bg-light rounded-pill border-0"
-                  placeholder="https://www.linkedin.com/jobs/view/1381919900/"
-                />
-              </div>
-            </div>
-            <div className="form-group row">
-              <div className="col-md-6">
-                <label htmlFor="contact-email">Contact email</label>
-                <input
-                  id="contact-email"
-                  name="contact-email-name"
-                  type="email"
-                  className="form-control form-control bg-light rounded-pill border-0"
-                  placeholder="job@yandex.ru"
-                />
-                <small id="email-help" className="form-text text-muted">We&#39;ll never share your email with anyone else.</small>
+                <Input
+                  label="Ссылка"
+                  ph="https://www.linkedin.com/jobs/view/1381919900/"
+                  classes={['bg-info']}
+                >
+                  <small id="emailHelp" className="form-text text-muted">Укажите ссылку с полным описанием должности.</small>
+                </Input>
+                <Input
+                  label="Email"
+                  ph="job@lead-radar.ru"
+                  classes={['bg-info']}
+                >
+                  <small id="emailHelp" className="form-text text-muted">Ваша электронная почта не передается куда либо еще.</small>
+                </Input>
               </div>
             </div>
             <div className="row">
@@ -90,7 +68,7 @@ const Post = () => {
               size={3}
               classes={['btn-primary', 'lift', 'rounded-pill', 'mb-4']}
             >
-              Скачать Пресс-Кит
+              Отправить
             </Button>
           </form>
         </div>
