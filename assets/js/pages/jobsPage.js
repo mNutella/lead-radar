@@ -9,7 +9,7 @@ import JobsQuery from '../app/lead-radar/gql/all_jobs.gql';
 
 
 const withJobs = graphql(JobsQuery, {
-  props: ({ data, query }) => ({ ...data, query }),
+  props: ({ data }) => ({ ...data }),
 });
 
 const renderLoading = () => <div>Loading</div>;
@@ -98,8 +98,11 @@ const useFilter = (query, jobs, loading, error) => {
 };
 
 const Jobs = ({
-  loading, jobs, error, query,
+  loading, jobs, error, location,
 }) => {
+  const { state } = location;
+  const query = state ? state.query : '';
+
   const [val, setVal] = useState(query);
   const filter = useFilter(val, jobs, loading, error);
 
@@ -150,19 +153,19 @@ const Jobs = ({
 };
 
 Jobs.defaultProps = {
-  query: '',
   loading: false,
-  jobs: undefined,
   error: false,
+  location: undefined,
+  jobs: undefined,
 };
 
 Jobs.propTypes = {
-  query: PropTypes.string,
   loading: PropTypes.bool,
+  error: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  location: PropTypes.any,
   // eslint-disable-next-line react/forbid-prop-types
   jobs: PropTypes.any,
-  // eslint-disable-next-line react/forbid-prop-types
-  error: PropTypes.any,
 };
 
 export default withJobs(Jobs);
