@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Moment from 'react-moment';
+import 'moment/locale/ru';
 import Button from '../Button';
 import Icon from '../Icon';
 
@@ -17,7 +19,7 @@ const JobsItem = ({
   <div className="card job-card rounded mb-3">
     <span className="card-body">
       <p className="text-muted">
-        <time dateTime="2019-05-31">{date}</time>
+        <Moment fromNow>{date}</Moment>
       </p>
       <h4>
         {title}
