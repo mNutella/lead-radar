@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { graphql } from 'react-apollo';
+import { useQuery } from 'react-apollo-hooks';
 import Button from '../app/lead-radar/components/Button';
 import HalfColor from '../app/lead-radar/components/HalfColor';
 import { JobItem, JobsList } from '../app/lead-radar/components/JobsList';
 import Search from '../app/lead-radar/components/Search';
-import JobsQuery from '../app/lead-radar/gql/all_jobs.gql';
+import JOBS from '../app/lead-radar/gql/all_jobs.gql';
+import { withSuspense } from '../utils';
 
-
-const withJobs = graphql(JobsQuery, {
-  props: ({ data }) => ({ ...data }),
-});
-
-const renderLoading = () => <div>Loading</div>;
 
 const renderError = () => <div>ERROR</div>;
 
@@ -38,19 +33,18 @@ const renderList = jobs => (
   </div>
 );
 
-const renderReceived = (data, loading, error) => {
-  if (loading) return renderLoading();
+const renderReceived = (data, error) => {
   if (error) return renderError();
 
   return renderList(data);
 };
 
-const useFilter = (query, jobs, loading, error) => {
+const useFilter = (query, jobs, error) => {
   const words = query.split(' ');
   const [result, setResult] = useState([]);
 
   useEffect(() => {
-    if (query !== ' ' && !loading && !error) {
+    if (query !== ' ' && !error) {
       const tempList = [];
 
       jobs.forEach((job) => {
@@ -98,13 +92,15 @@ const useFilter = (query, jobs, loading, error) => {
 };
 
 const Jobs = ({
-  loading, jobs, error, location,
+  location,
 }) => {
   const { state } = location;
   const query = state ? state.query : '';
+  const { data, error } = useQuery(JOBS, { suspend: true });
+  const { jobs } = data;
 
   const [val, setVal] = useState(query);
-  const filter = useFilter(val, jobs, loading, error);
+  const filtered = useFilter(val, jobs, error);
 
   return (
     <main className="jobs-container">
@@ -137,13 +133,13 @@ const Jobs = ({
                     <Search
                       defVal={query}
                       ph="Search by location, role or company"
-                      found={filter.jobs ? filter.jobs.length : 0}
+                      found={filtered.jobs ? filtered.jobs.length : 0}
                       onChange={e => setVal(e.target.value)}
                     />
                   </div>
                 </div>
               </div>
-              {renderReceived(filter.jobs, loading, error)}
+              {renderReceived(filtered.jobs, error)}
             </div>
           </div>
         </div>
@@ -153,19 +149,19 @@ const Jobs = ({
 };
 
 Jobs.defaultProps = {
-  loading: false,
-  error: false,
+  // loading: false,
+  // error: false,
   location: undefined,
-  jobs: undefined,
+  // jobs: undefined,
 };
 
 Jobs.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.bool,
+  // loading: PropTypes.bool,
+  // error: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   location: PropTypes.any,
   // eslint-disable-next-line react/forbid-prop-types
-  jobs: PropTypes.any,
+  // jobs: PropTypes.any,
 };
 
-export default withJobs(Jobs);
+export default withSuspense(Jobs, <div>Loading...</div>);
