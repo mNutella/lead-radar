@@ -25,9 +25,10 @@ const renderRouteBtn = (children, link, classes) => (
   </Link>
 );
 
-const renderDefBtn = (children, type, classes, onClick) => (
+const renderDefBtn = (children, disabled, type, classes, onClick) => (
   // eslint-disable-next-line react/button-has-type
   <button
+    disabled={disabled}
     type={type}
     className={`btn btn-block p-3 ${classes.join(' ')}`}
     onClick={onClick}
@@ -36,12 +37,12 @@ const renderDefBtn = (children, type, classes, onClick) => (
   </button>
 );
 
-const renderBtn = (children, route, def, link, type, classes, onClick) => {
+const renderBtn = (children, disabled, route, def, link, type, classes, onClick) => {
   if (route) {
     return renderRouteBtn(children, link, classes);
   }
   if (def) {
-    return renderDefBtn(children, type, classes, onClick);
+    return renderDefBtn(children, disabled, type, classes, onClick);
   }
   if (!route && !def) {
     return renderLinkBtn(children, link, classes);
@@ -51,36 +52,17 @@ const renderBtn = (children, route, def, link, type, classes, onClick) => {
 };
 
 const Button = ({
-  children, route, def, link, type, size, classes, onClick,
+  children, disabled, route, def, link, type, size, classes, onClick,
 }) => (
   <div className="row">
     <div className={`col-sm-${size}`}>
-      {renderBtn(children, route, def, link, type, classes, onClick)}
-      {/* {route ? (
-        <Link
-          className={`btn btn-block p-3 ${classes.join(' ')}`}
-          to={link}
-          role="button"
-          onClick={onClick}
-        >
-          {children}
-        </Link>
-      ) : (
-        <a
-          className={`btn btn-block p-3 ${classes.join(' ')}`}
-          href={link}
-          role="button"
-          onClick={onClick}
-        >
-          {children}
-        </a>
-      )
-      } */}
+      {renderBtn(children, disabled, route, def, link, type, classes, onClick)}
     </div>
   </div>
 );
 
 Button.defaultProps = {
+  disabled: false,
   route: false,
   def: false,
   link: '#!',
@@ -92,6 +74,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+  disabled: PropTypes.bool,
   route: PropTypes.bool,
   def: PropTypes.bool,
   link: PropTypes.string,
