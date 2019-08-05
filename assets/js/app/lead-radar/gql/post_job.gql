@@ -1,0 +1,34 @@
+mutation createJob(
+  $role: String!, 
+  $location: String!,
+  $link: String!,
+  $company: String!,
+  $contactEmail: String!) {
+  createJob (
+    role: $role,
+    location: $location,
+    link: $link,
+    company: $company,
+    contactEmail: $contactEmail
+  ) {
+    id
+    location {
+      displayName
+      region {
+        alternateNames
+      }
+    }
+    role {
+      name
+    }
+    link
+    company {
+      name
+    }
+    contactEmail {
+      email
+    }
+    approved
+    createdDate
+  }
+}

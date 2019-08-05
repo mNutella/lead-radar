@@ -1,16 +1,33 @@
-// import PropTypes from 'prop-types';
-import React from 'react';
-// import { graphql } from 'react-apollo';
+import React, { useState } from 'react';
+import { useMutation } from 'react-apollo-hooks';
 import Button from '../app/lead-radar/components/Button';
 import Input from '../app/lead-radar/components/Input';
+import POST_JOB from '../app/lead-radar/gql/post_job.gql';
 
 
 const Post = () => {
+  const [company, setCompany] = useState('');
+  const [location, setLocation] = useState('');
+  const [position, setPosition] = useState('');
+  const [link, setLink] = useState('');
+  const [email, setEmail] = useState('');
+
+  const [postJob, { loading, error }] = useMutation(POST_JOB, {
+    variables: {
+      role: position,
+      location,
+      link,
+      company,
+      contactEmail: email,
+    },
+  });
+
   return (
     <main className="post-container">
       <div className="container">
         <div className="header">
           <h1 className="display-4">Post a Job</h1>
+          {loading && (<div>Loading</div>)}
           <h4>
             Reach hundreds of design leaders looking for their next opportunity.
           </h4>
@@ -29,16 +46,25 @@ const Post = () => {
                   label="Компания"
                   ph="Yandex"
                   classes={['bg-info']}
+                  onChange={e => setCompany(e.target.value)}
                 />
                 <Input
                   label="Должность"
                   ph="Руководитель отдела разработки Док-Станции"
                   classes={['bg-info']}
+                  onChange={e => setPosition(e.target.value)}
+                />
+                <Input
+                  label="Город"
+                  ph="Ухта"
+                  classes={['bg-info']}
+                  onChange={e => setLocation(e.target.value)}
                 />
                 <Input
                   label="Ссылка"
                   ph="https://www.linkedin.com/jobs/view/1381919900/"
                   classes={['bg-info']}
+                  onChange={e => setLink(e.target.value)}
                 >
                   <small id="emailHelp" className="form-text text-muted">Укажите ссылку с полным описанием должности.</small>
                 </Input>
@@ -46,6 +72,7 @@ const Post = () => {
                   label="Email"
                   ph="job@lead-radar.ru"
                   classes={['bg-info']}
+                  onChange={e => setEmail(e.target.value)}
                 >
                   <small id="emailHelp" className="form-text text-muted">Ваша электронная почта не передается куда либо еще.</small>
                 </Input>
@@ -64,9 +91,12 @@ const Post = () => {
               If you have any questions, don&#39;t hesitate to get in touch.
             </p>
             <Button
-              link="#"
+              disabled={loading}
+              def
+              type="submit"
               size={3}
               classes={['btn-primary', 'lift', 'rounded-pill', 'mb-4']}
+              onClick={postJob}
             >
               Отправить
             </Button>
