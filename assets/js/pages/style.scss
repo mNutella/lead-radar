@@ -3,25 +3,33 @@
 
 .about-container, .press-container, .post-container {
   margin-top: calc(#{$page_navbar_margin} + #{$nav-link-height} - #{$nav-link-padding-y * 2});
-  background: url("../../images/page_figure.svg");
-  background-repeat: no-repeat, repeat;
-  background-position: center top;
+  &::before {
+    background: url("../../images/page_figure.svg");
+    background-repeat: no-repeat, repeat;
+    background-position: center top;
+    background-size: contain;
+    content: "";
+    // position: absolute;
+    // top: auto;
+    // bottom: auto;
+    // left: auto;
+    // right: auto;
+    // width: 100%;
+    // height: 100%;
+    // z-index: 1;
+    // opacity: .04;
+  }
+}
+
+.home-container {
+  h1 {
+    line-height: 1.2 !important;
+  }
 }
 
 .jobs-list-container {
   overflow-y: scroll;
   height: calc(100vh - 72px);
-}
-
-.jobs-img {
-  height: 100%;
-  width: 100%;
-  padding-top: 65vh;
-
-  background-image: url("../../images/career_2.svg");
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 
 .header {
@@ -53,6 +61,47 @@
 
 @media (max-width: 767px) {
   .home-container {
+    text-align: center;
     margin-top: calc(#{$page_navbar_margin} + #{$nav-link-height} - #{$nav-link-padding-y * 2});
+    .title {
+      font-size: 2.5rem !important;
+      line-height: 1.2 !important;
+    }
+  }
+  .jobs-list-container {
+    height: calc(100vh - 72px - 3rem);
+    background-color: transparent !important;
+  }
+  .jobs-col-left {
+    display: none;
+  }
+  .jobs-col-right {
+    margin-top: 3rem !important;
+  }
+  .home-col-right {
+    margin-bottom: 3rem !important;
+  }
+}
+
+@media (min-width: 767px) {
+  .home-container, .jobs-list-container {
+    .container {
+      height: 100% !important;
+      &-fluid {
+        height: 100% !important;
+      }
+      .row {
+        height: 100% !important;
+      }
+    }
+    .title {
+      font-size: 3.5rem !important;
+    }
+  }
+  .jobs-col-left {
+    padding-right: 3rem !important;
+  }
+  .home-col-right {
+    padding-left: 3rem !important;
   }
 }
