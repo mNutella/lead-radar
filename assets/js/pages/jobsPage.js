@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
 import Button from '../app/lead-radar/components/Button';
 import HalfColor from '../app/lead-radar/components/HalfColor';
+import Img from '../app/lead-radar/components/Img';
 import { JobItem, JobsList } from '../app/lead-radar/components/JobsList';
 import Search from '../app/lead-radar/components/Search';
+import Spinner from '../app/lead-radar/components/Spinner';
 import JOBS from '../app/lead-radar/gql/all_jobs.gql';
 import { withSuspense } from '../utils';
 
@@ -105,16 +107,19 @@ const Jobs = ({
   return (
     <main className="jobs-container">
       <HalfColor />
-      <div className="container-fluid h-100">
-        <div className="container h-100">
-          <div className="row h-100 mx-lg-5 justify-content-center">
-            <div className="col-sm-6 align-self-center">
+      <div className="container-fluid">
+        <div className="container">
+          <div className="row mx-lg-5 justify-content-center">
+            <div className="col-sm-6 align-self-center jobs-col-left">
               <div className="row mb-3">
                 <div className="col-sm-12 align-self-center text-md-left text-center">
-                  <div className="jobs-img" />
-                  <h4 className="mt-4 text-white">
-                    Reach hundreds of design leaders looking for their next opportunity.
-                  </h4>
+                  <Img name="hr" />
+                  <h1 className="mt-4 text-white font-weight-bold">
+                    Достигните
+                    {' '}
+                    <span className="text-warning">сотен лидеров</span>
+                    , ищущих их следующую возможность.
+                  </h1>
                 </div>
               </div>
               <Button
@@ -123,10 +128,10 @@ const Jobs = ({
                 size={6}
                 classes={['btn-light', 'lift', 'font-weight-bold', 'text-primary', 'rounded-pill']}
               >
-                Post Job
+                Разместить
               </Button>
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-6 jobs-col-right">
               <div className="header">
                 <div className="form-group row mb-1 mt-2">
                   <div className="col-sm-12">
@@ -149,19 +154,12 @@ const Jobs = ({
 };
 
 Jobs.defaultProps = {
-  // loading: false,
-  // error: false,
   location: undefined,
-  // jobs: undefined,
 };
 
 Jobs.propTypes = {
-  // loading: PropTypes.bool,
-  // error: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   location: PropTypes.any,
-  // eslint-disable-next-line react/forbid-prop-types
-  // jobs: PropTypes.any,
 };
 
-export default withSuspense(Jobs, <div>Loading...</div>);
+export default withSuspense(Jobs, <Spinner />);
