@@ -18,12 +18,12 @@ const routes = [
     component: Post,
   },
   {
-    path: '/press',
-    component: Press,
-  },
-  {
     path: '/about',
     component: About,
+  },
+  {
+    path: '/press',
+    component: Press,
   },
 ];
 
