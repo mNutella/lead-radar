@@ -1,8 +1,8 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { NotFound } from '../../pages';
 import routes from '../../routes';
-import { getRandomID } from '../../utils';
 import Navbar from './components/Navbar';
 
 
@@ -12,14 +12,19 @@ const App = () => (
       render={({ location }) => (
         <React.Fragment>
           <Navbar location={location} />
-          {routes.map(route => (
+          <Switch>
+            {routes.map(route => (
+              <Route
+                key={`${route.path}}`}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+              />
+            ))}
             <Route
-              key={`${route.path}-${getRandomID()}`}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
+              component={NotFound}
             />
-          ))}
+          </Switch>
         </React.Fragment>
       )}
     />
