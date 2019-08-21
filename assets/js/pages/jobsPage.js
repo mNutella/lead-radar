@@ -136,8 +136,9 @@ const Jobs = ({
                 <div className="form-group row mb-1 mt-2">
                   <div className="col-sm-12">
                     <Search
+                      focus
                       defVal={query}
-                      ph="Search by location, role or company"
+                      ph="Поиск по Городу, Позиции, Компании"
                       found={filtered.jobs ? filtered.jobs.length : 0}
                       onChange={e => setVal(e.target.value)}
                     />

@@ -1,54 +1,54 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
-// import { graphql } from 'react-apollo';
 
 
-const About = () => {
-  return (
-    <main className="about-container">
-      <div className="container">
-        <div className="header">
-          <h1 className="display-4">About</h1>
-          <h4>
-            Boooom is a curated list of leadership job opportunities for designers.
-            We want to help great designers connect with great companies.
-          </h4>
-        </div>
-        <div className="content">
-          <h3>A network of partners and sponsors</h3>
-          <p>
-            Our audience is primarily composed of designers looking for opportunities in
-            leadership and management roles. They are usually not in a hurry,
-            but will act fast if the perfect opportunity comes by.
-            New visitors come here mainly by reference from their peers or
-            organically through specialized design communities and media outlets.
-            Monthly, we post dozens of job opportunities in awesome companies from all over the world.
-          </p>
-          <p>
-            We foster partnerships with key communities, organizations and
-            events to help the advancement of the discipline.
-            By showing the value of design for business,
-            design management and leadership becomes a strategic asset for organizations.
-            Many leadership roles are filled off-market just by reference,
-            taking several months, just because there wasn’t an efficient way to get to this audience.
-            Not anymore.
-          </p>
-          <p>
-            Would like to discuss a sponsorship opportunity?
-            Email us at <a href="#">partners@lead-radar.co</a>.
-          </p>
-          <h3>Who are we?</h3>
-          <p>Boooom is run by Tiago Machado and João Alfaiate.</p>
-          <h3>Keep up to date</h3>
-          <p>We’re live on Twitter, LinkedIn and Facebook, but also publish an awesome newsletter.</p>
-          <h3>Keep up to date</h3>
-          <p>We’re live on Twitter, LinkedIn and Facebook, but also publish an awesome newsletter.</p>
-          <h3>Contact us</h3>
-          <a href="#">mail@lead-radar.co</a>
-        </div>
+const About = () => (
+  <main className="about-container">
+    <div className="container">
+      <div className="header">
+        <h1 className="display-4">О нас</h1>
+        <h4>
+          Лид-Радар является агрегатаром лидерских и управленчиских позиций.
+          <br />
+          Мы хотим помочь великим руководителям связаться с великими компаниями.
+        </h4>
       </div>
-    </main>
-  );
-};
+      <div className="content">
+        <h3 className="font-weight-bold">Партнеры и спонсоры</h3>
+        <p>
+          Наша аудитория в основном состоит из специалистов, которые ищут позиции на
+          лидерские и управленческие роли. Они обычно не спешат,
+          но будут действовать быстро, если появится прекрасная возможность.
+          Новые посетители приходят сюда в основном по рекомендации или
+          органически через специализированные сообщества и СМИ.
+          Ежемесячно мы публикуем десятки вакансий в удивительных компаниях.
+        </p>
+        <p>
+          Мы развиваем партнерские отношения с ключевыми сообществами, организациями и
+          событиями, чтобы помочь продвижению.
+          Показывая ценность специалистов для бизнеса, управленцы и
+          лидеры становятся стратегическим активом для организаций.
+          Многие позиции находятся вне рынка из за того что они доступны только по ссылке,
+          на поиск кандидатов уходит не один месяц просто потому,
+          что не было эффективного способа добраться до этой аудитории.
+        </p>
+        <p>
+          Хотите обсудить возможность спонсорства?
+          Напишите нам по адресу
+          {' '}
+          <a href="#!">partners@lead-radar.co</a>
+        </p>
+        <h3 className="font-weight-bold">Кто мы?</h3>
+        <p>Лид-Радар запускался одним человеком.</p>
+        <h3 className="font-weight-bold">Держать в курсе</h3>
+        <p>
+          Мы живем в Twitter, LinkedIn и Facebook, VK,
+          но также публикуем потрясающую новостную рассылку.
+        </p>
+        <h3 className="font-weight-bold">Связаться с нами</h3>
+        <a href="#!">mail@lead-radar.co</a>
+      </div>
+    </div>
+  </main>
+);
 
 export default About;

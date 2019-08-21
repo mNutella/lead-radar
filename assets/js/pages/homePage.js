@@ -35,7 +35,8 @@ const Home = ({ history }) => {
                     <div className="form-group row mb-4">
                       <div className="col-sm-11">
                         <Search
-                          ph="Search by location, role or company"
+                          focus
+                          ph="Поиск по Городу, Позиции, Компании"
                           onChange={e => setVal(e.target.value)}
                         />
                       </div>

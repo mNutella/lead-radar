@@ -7,7 +7,6 @@ import { PricingTable, Plan } from '../app/lead-radar/components/PricingTable';
 import RequestStatus from '../app/lead-radar/components/RequestStatus';
 import Modal from '../app/lead-radar/components/Modal';
 
-
 const useModal = () => {
   const [show, setShow] = useState(false);
 
@@ -24,16 +23,24 @@ const useModal = () => {
 
 const useFormValidator = () => {
   const [errors, setErrors] = useState({
-    company: '', role: '', location: '', link: '', email: '',
+    company: '',
+    role: '',
+    location: '',
+    link: '',
+    email: '',
   });
-  const validUrlRegex = RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/);
-  const validEmailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  const validUrlRegex = RegExp(
+    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
+  );
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  );
 
   useEffect(() => {
     const tErrors = errors;
 
     // eslint-disable-next-line no-use-before-define
-    Object.keys(tErrors).forEach((key => validateForm(key, tErrors[key])));
+    Object.keys(tErrors).forEach(key => validateForm(key, tErrors[key]));
   }, []);
 
   const validateForm = (name, value) => {
@@ -41,33 +48,23 @@ const useFormValidator = () => {
 
     switch (name) {
       case 'company':
-        tErrors[name] = value.length > 0
-          ? ''
-          : 'Пожалуйста заполните поле!';
+        tErrors[name] = value.length > 0 ? '' : 'Пожалуйста заполните поле!';
         setErrors(tErrors);
         break;
       case 'role':
-        tErrors[name] = value.length > 0
-          ? ''
-          : 'Пожалуйста заполните поле!';
+        tErrors[name] = value.length > 0 ? '' : 'Пожалуйста заполните поле!';
         setErrors(tErrors);
         break;
       case 'location':
-        tErrors[name] = value.length > 0
-          ? ''
-          : 'Пожалуйста заполните поле!';
+        tErrors[name] = value.length > 0 ? '' : 'Пожалуйста заполните поле!';
         setErrors(tErrors);
         break;
       case 'link':
-        tErrors[name] = validUrlRegex.test(value)
-          ? ''
-          : 'Неправильный URL!';
+        tErrors[name] = validUrlRegex.test(value) ? '' : 'Неправильный URL!';
         setErrors(tErrors);
         break;
       case 'email':
-        tErrors[name] = validEmailRegex.test(value)
-          ? ''
-          : 'Неправильный Email!';
+        tErrors[name] = validEmailRegex.test(value) ? '' : 'Неправильный Email!';
         setErrors(tErrors);
         break;
       default:
@@ -77,9 +74,7 @@ const useFormValidator = () => {
 
   const isValid = () => {
     let valid = true;
-    Object.values(errors).forEach(
-      val => val.length > 0 && (valid = false)
-    );
+    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
     return valid;
   };
 
@@ -91,7 +86,9 @@ const useFormValidator = () => {
   };
 
   return {
-    handleChange, errors, isValid,
+    handleChange,
+    errors,
+    isValid,
   };
 };
 
@@ -102,9 +99,7 @@ const Post = () => {
   const [link, setLink] = useState('');
   const [email, setEmail] = useState('');
   const { isShow, handleToggleModal, handleCloseModal } = useModal();
-  const {
-    handleChange, errors, isValid,
-  } = useFormValidator();
+  const { handleChange, errors, isValid } = useFormValidator();
 
   const [postJob, { loading, hasError }] = useMutation(POST_JOB, {
     variables: {
@@ -146,17 +141,13 @@ const Post = () => {
               </h1>
             </RequestStatus>
           </Modal>
-          <h4>
-            Достигните сотен лидеров, ищущих их следующую возможность.
-          </h4>
+          <h4>Достигните сотен лидеров, ищущих их следующую возможность.</h4>
         </div>
         <div className="content">
           <h3 className="font-weight-bold">Заполните форму</h3>
           <p>
-            Спасибо за выбор Lead-Radar!
-            Пожалуйста, обратите внимание, что должность должна занимать руководящую или
-            {' '}
-            управленческую роль (
+            Спасибо за выбор Lead-Radar! Пожалуйста, обратите внимание, что должность должна
+            занимать руководящую или управленческую роль (
             <i>директор, менеджер, руководитель, вице-президент и т. д.</i>
             ).
           </p>
@@ -171,7 +162,9 @@ const Post = () => {
                   classes={['bg-info']}
                   onChange={e => setCompany(e.target.value)}
                 >
-                  {errors.company.length > 0 && (<span className="text-danger">{errors.company}</span>)}
+                  {errors.company.length > 0 && (
+                    <span className="text-danger">{errors.company}</span>
+                  )}
                 </Input>
                 <Input
                   name="role"
@@ -180,7 +173,7 @@ const Post = () => {
                   classes={['bg-info']}
                   onChange={e => setPosition(e.target.value)}
                 >
-                  {errors.role.length > 0 && (<span className="text-danger">{errors.role}</span>)}
+                  {errors.role.length > 0 && <span className="text-danger">{errors.role}</span>}
                 </Input>
                 <Input
                   name="location"
@@ -189,7 +182,9 @@ const Post = () => {
                   classes={['bg-info']}
                   onChange={e => setLocation(e.target.value)}
                 >
-                  {errors.location.length > 0 && (<span className="text-danger">{errors.location}</span>)}
+                  {errors.location.length > 0 && (
+                    <span className="text-danger">{errors.location}</span>
+                  )}
                 </Input>
                 <Input
                   name="link"
@@ -198,8 +193,10 @@ const Post = () => {
                   classes={['bg-info']}
                   onChange={e => setLink(e.target.value)}
                 >
-                  <small id="emailHelp" className="form-text text-muted">Укажите ссылку с полным описанием должности.</small>
-                  {errors.link.length > 0 && (<span className="text-danger">{errors.link}</span>)}
+                  <small id="emailHelp" className="form-text text-muted">
+                    Укажите ссылку с полным описанием должности.
+                  </small>
+                  {errors.link.length > 0 && <span className="text-danger">{errors.link}</span>}
                 </Input>
                 <Input
                   name="email"
@@ -208,8 +205,10 @@ const Post = () => {
                   classes={['bg-info']}
                   onChange={e => setEmail(e.target.value)}
                 >
-                  <small id="emailHelp" className="form-text text-muted">Ваша электронная почта не передается куда либо еще.</small>
-                  {errors.email.length > 0 && (<span className="text-danger">{errors.email}</span>)}
+                  <small id="emailHelp" className="form-text text-muted">
+                    Ваша электронная почта не передается куда либо еще.
+                  </small>
+                  {errors.email.length > 0 && <span className="text-danger">{errors.email}</span>}
                 </Input>
               </div>
             </div>
@@ -218,12 +217,11 @@ const Post = () => {
               <Plan title="Стандартный" price={0} />
             </PricingTable>
             <p className="mt-5">
-              Ваша заявка будет рассмотрена в течение 24 часов.
-              {' '}
-              Мы вышлем вам инструкции по оплате, попросим указать информацию,
-              указанную в счете, а также попросим вас подтвердить данные о вакансии.
-              После подтверждения оплаты вакансия будет опубликована на срок в зависимости от выбраного плана.
-              Если у вас есть какие-либо вопросы, не стесняйтесь обращаться к нам.
+              Ваша заявка будет рассмотрена в течение 24 часов. Мы вышлем вам инструкции по оплате,
+              попросим указать информацию, указанную в счете, а также попросим вас подтвердить
+              данные о вакансии. После подтверждения оплаты вакансия будет опубликована на срок в
+              зависимости от выбраного плана. Если у вас есть какие-либо вопросы, не стесняйтесь
+              обращаться к нам.
             </p>
             <Button
               disabled={loading}
