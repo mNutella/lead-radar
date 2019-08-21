@@ -42,18 +42,51 @@ const Navbar = ({ location }) => {
   const navHelper = useScroll();
   const size = useResponsive();
 
+  useEffect(() => {
+    size.setSizes();
+  }, []);
+
   return (
-    <nav className={`navbar navbar-expand-md fixed-top ${isJobs && !size.mobile ? 'navbar-dark' : 'navbar-light'} ${isJobs && !size.mobile ? 'col-md-6' : 'col-md-12'} ${navHelper.scroll ? 'bg-primary navbar-dark shadow' : ''} custom-nav bg-faded`}>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <nav
+      className={`navbar navbar-expand-md fixed-top ${
+        isJobs && !size.mobile ? 'navbar-dark' : 'navbar-light'
+      } ${isJobs && !size.mobile ? 'col-md-6' : 'col-md-12'} ${
+        navHelper.scroll ? 'bg-primary navbar-dark shadow' : ''
+      } custom-nav bg-faded`}
+    >
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#main-navbar"
+        aria-controls="main-navbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span className="navbar-toggler-icon" />
       </button>
-      <Link className="navbar-brand" to="/">Navbar</Link>
-      <div className={`collapse navbar-collapse ${isJobs ? 'justify-content-right' : ''} pl-3 rounded ${!navHelper.scroll && size.mobile ? 'shadow bg-primary' : ''}`} id="main-navbar">
+      <Link className="navbar-brand" to="/">
+        Леад-Радар
+      </Link>
+      <div
+        className={`collapse navbar-collapse ${
+          isJobs ? 'justify-content-right' : ''
+        } pl-3 rounded ${!navHelper.scroll && size.mobile ? 'shadow bg-primary' : ''}`}
+        id="main-navbar"
+      >
         <div className="navbar-nav">
-          <Link className="nav-item nav-link" to="/jobs">Jobs</Link>
-          <Link className="nav-item nav-link" to="/post">Post</Link>
-          <Link className="nav-item nav-link" to="/about">About</Link>
-          <Link className="nav-item nav-link" to="/press">Press</Link>
+          <Link className="nav-item nav-link" to="/jobs">
+            Вакансии
+          </Link>
+          <Link className="nav-item nav-link" to="/post">
+            Разместить
+          </Link>
+          <Link className="nav-item nav-link" to="/about">
+            О нас
+          </Link>
+          <Link className="nav-item nav-link" to="/press">
+            Медиа
+          </Link>
         </div>
       </div>
     </nav>
