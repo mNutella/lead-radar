@@ -1,0 +1,40 @@
+.pricing-table {}
+
+.plan {
+  border: none;
+  transition: all 0.2s;
+  hr {
+    margin: 1.5rem 0;
+  }
+  ul {
+    list-style-type: none;
+  }
+  i {
+    margin-right: 10px;
+  }
+  ul li {
+    margin-bottom: 1rem;
+  }
+  &-title {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+  }
+  &-price {
+    font-size: 3rem;
+    margin: 0;
+  }
+  &-period {
+    font-size: 0.8rem;
+  }
+  &-active {
+    box-shadow: 0 1rem 2.5rem rgba(22, 28, 45, 0.1), 0 0.5rem 1rem -0.75rem rgba(22, 28, 45, 0.1) !important;
+    transform: translateY(-3px);
+    border: 1px solid #007bff;
+    z-index: 2;
+  }
+  &:hover {
+    z-index: 1;
+  }
+}
