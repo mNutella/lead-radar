@@ -39,7 +39,7 @@ const Navbar = ({ location }) => {
   }
 
   const isJobs = location.pathname === '/jobs';
-  const navHelper = useScroll();
+  const { scroll } = useScroll();
   const size = useResponsive();
 
   useEffect(() => {
@@ -51,8 +51,8 @@ const Navbar = ({ location }) => {
       className={`navbar navbar-expand-md fixed-top ${
         isJobs && !size.mobile ? 'navbar-dark' : 'navbar-light'
       } ${isJobs && !size.mobile ? 'col-md-6' : 'col-md-12'} ${
-        navHelper.scroll ? 'bg-primary navbar-dark shadow' : ''
-      } custom-nav bg-faded`}
+        scroll ? 'bg-primary navbar-dark shadow' : ''
+      } navbar-custom bg-faded`}
     >
       <button
         className="navbar-toggler"
@@ -65,13 +65,14 @@ const Navbar = ({ location }) => {
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <Link className="navbar-brand" to="/">
-        Леад-Радар
+      <Link className="navbar-brand navbar-custom-brand" to="/">
+        <div className="logo mr-3" />
+        <span className={`${!scroll && size.mobile ? 'text-black' : ''}`}>Лид-Радар</span>
       </Link>
       <div
         className={`collapse navbar-collapse ${
           isJobs ? 'justify-content-right' : ''
-        } pl-3 rounded ${!navHelper.scroll && size.mobile ? 'shadow bg-primary' : ''}`}
+        } pl-3 rounded ${!scroll && size.mobile ? 'shadow bg-primary' : ''}`}
         id="main-navbar"
       >
         <div className="navbar-nav">

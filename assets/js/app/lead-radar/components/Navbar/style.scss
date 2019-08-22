@@ -1,3 +1,25 @@
-.custom-nav {
+.navbar-custom {
   transition: background-color .5s ease;
+  &-brand {
+    display: flex !important;
+    align-items: center;
+    border-style: none;
+  }
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../../../images/logo.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@media (max-width: 767px) {
+  .navbar-custom-brand {
+    & > .text-black {
+      color: #212529 !important;
+    }
+  }
 }
