@@ -1,8 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-for */
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 
 import './style.scss';
-
 
 const Input = ({
   name, label, type, ph, defVal, focus, children, classes, onChange,
@@ -17,7 +17,7 @@ const Input = ({
 
   return (
     <div className="form-group">
-      {label !== '' && (<label>{label}</label>)}
+      {label !== '' && <label htmlFor={name}>{label}</label>}
       <input
         name={name}
         type={type}

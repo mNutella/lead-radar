@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useEffect, useState } from 'react';
 import { useMutation } from 'react-apollo-hooks';
 import ReCAPTCHA from 'react-google-recaptcha';

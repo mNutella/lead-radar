@@ -3,17 +3,16 @@ import React from 'react';
 
 import './style.scss';
 
-
-const Modal = ({ handleClose, show, children }) => {
-  return (
-    <div className={`modal-window ${show && 'modal-window-active'}`}>
-      <div className="shadow rounded">
-        <button title="Close" onClick={handleClose} className="modal-close" type="button">Закрыть</button>
-        {children}
-      </div>
+const Modal = ({ handleClose, show, children }) => (
+  <div className={`modal-window ${show && 'modal-window-active'}`}>
+    <div className="shadow rounded">
+      <button title="Close" onClick={handleClose} className="modal-close" type="button">
+          Закрыть
+      </button>
+      {children}
     </div>
-  );
-};
+  </div>
+);
 
 Modal.defaultProps = {
   show: false,

@@ -1,9 +1,9 @@
 import React from 'react';
-import Empty from '../app/lead-radar/components/Empty';
+import SvgNotFound from '../app/lead-radar/components/SvgNotFound';
 
 
 const NotFound = () => (
-  <Empty />
+  <SvgNotFound />
 );
 
 export default NotFound;
