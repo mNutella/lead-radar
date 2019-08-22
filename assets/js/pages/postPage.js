@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation } from 'react-apollo-hooks';
+import ReCAPTCHA from 'react-google-recaptcha';
 import Button from '../app/lead-radar/components/Button';
 import Input from '../app/lead-radar/components/Input';
-import POST_JOB from '../app/lead-radar/gql/post_job.gql';
-import { PricingTable, Plan } from '../app/lead-radar/components/PricingTable';
-import RequestStatus from '../app/lead-radar/components/RequestStatus';
 import Modal from '../app/lead-radar/components/Modal';
-
-const useModal = () => {
-  const [show, setShow] = useState(false);
-
-  const handleToggleModal = () => {
-    setShow(!show);
-  };
-
-  const handleCloseModal = () => {
-    setShow(false);
-  };
-
-  return { handleToggleModal, handleCloseModal, isShow: show };
-};
+import { Plan, PricingTable } from '../app/lead-radar/components/PricingTable';
+import RequestStatus from '../app/lead-radar/components/RequestStatus';
+import POST_JOB from '../app/lead-radar/gql/post_job.gql';
+import { useModal, useRecaptcha } from '../utils';
 
 const useFormValidator = () => {
   const [errors, setErrors] = useState({
@@ -100,6 +88,7 @@ const Post = () => {
   const [email, setEmail] = useState('');
   const { isShow, handleToggleModal, handleCloseModal } = useModal();
   const { handleChange, errors, isValid } = useFormValidator();
+  const reCaptcha = useRecaptcha();
 
   const [postJob, { loading, hasError }] = useMutation(POST_JOB, {
     variables: {
@@ -112,7 +101,7 @@ const Post = () => {
   });
 
   const handleSubmit = () => {
-    if (isValid()) {
+    if (isValid() && reCaptcha.isVerified) {
       postJob();
       handleToggleModal();
       const timerId = setInterval(() => {
@@ -146,8 +135,8 @@ const Post = () => {
         <div className="content">
           <h3 className="font-weight-bold">Заполните форму</h3>
           <p>
-            Спасибо за выбор Лид-Радар! Пожалуйста, обратите внимание, что должность должна
-            занимать руководящую или управленческую роль (
+            Спасибо за выбор Лид-Радар! Пожалуйста, обратите внимание, что должность должна занимать
+            руководящую или управленческую роль (
             <i>директор, менеджер, руководитель, вице-президент и т. д.</i>
             ).
           </p>
@@ -223,6 +212,11 @@ const Post = () => {
               зависимости от выбраного плана. Если у вас есть какие-либо вопросы, не стесняйтесь
               обращаться к нам.
             </p>
+            <ReCAPTCHA
+              className
+              sitekey="6LcQTrQUAAAAAC51kTmXt8os3hRoP_jNgi48vPHZ"
+              onChange={reCaptcha.handleChange}
+            />
             <Button
               disabled={loading}
               def
