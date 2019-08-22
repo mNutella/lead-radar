@@ -63,7 +63,11 @@ const useFormValidator = () => {
 
   const isValid = () => {
     let valid = true;
-    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+    Object.values(errors).forEach((val) => {
+      const flag = val.length > 0 && (valid = false);
+
+      return flag;
+    });
     return valid;
   };
 
