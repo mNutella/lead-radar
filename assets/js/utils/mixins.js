@@ -63,3 +63,31 @@ export const useResponsive = () => {
     setSizes,
   };
 };
+
+export const useRecaptcha = () => {
+  const [verified, setVerify] = useState(false);
+
+  const handleChange = (value) => {
+    if (value) {
+      setVerify(true);
+    } else {
+      setVerify(false);
+    }
+  };
+
+  return { handleChange, isVerified: verified };
+};
+
+export const useModal = () => {
+  const [show, setShow] = useState(false);
+
+  const handleToggleModal = () => {
+    setShow(!show);
+  };
+
+  const handleCloseModal = () => {
+    setShow(false);
+  };
+
+  return { handleToggleModal, handleCloseModal, isShow: show };
+};
