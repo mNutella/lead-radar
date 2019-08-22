@@ -41,6 +41,7 @@ pylint:
     - unused-import
     - unused-argument
     - broad-except
+    - too-many-branches
   options:
     max-line-length: 100
 
