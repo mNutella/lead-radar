@@ -20,6 +20,7 @@ pep8:
     - D205
     - D400
     - N802  # function name should be lowercase, breaks on tests
+    - MC0001
   options:
     max-line-length: 100
 
@@ -33,6 +34,9 @@ pylint:
     - invalid-name
     - no-self-use
     - no-member
+    - unused-import
+    - unused-argument
+    - broad-except
   options:
     max-line-length: 100
 
