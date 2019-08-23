@@ -9,11 +9,20 @@ DEBUG = False
 SECRET_KEY = config('SECRET_KEY')
 
 DATABASES = {
-    'default': config('DATABASE_URL', cast=db_url),
+    # 'default': config('DATABASE_URL', cast=db_url),
+    'default': {
+        'ENGINE': "django.db.backends.postgresql_psycopg2",
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_URL'),
+        'PORT': config('DATABASE_PORT'),
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'lid-radar.herokuapp.com']
 
 STATIC_ROOT = base_dir_join('staticfiles')
 STATIC_URL = '/static/'
@@ -30,7 +39,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # Security
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True

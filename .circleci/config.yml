@@ -78,10 +78,12 @@ jobs:
           environment:
             DJANGO_SETTINGS_MODULE: 'leadradar.settings.production'
             SECRET_KEY: "$(python -c 'import uuid; print(uuid.uuid4().hex + uuid.uuid4().hex)')"
-            DATABASE_URL: 'localhost' # sqlite:///
+            DATABASE_NAME: 'lead_radar_db'
+            DATABASE_USER: 'juser'
+            DATABASE_PASSWORD: 'Klop1'
+            DATABASE_URL: 'localhost'
             DATABASE_PORT: '5432'
-            DATABASE_NAME: 'lead-radar'
-            ALLOWED_HOSTS: '.example.org'
+            ALLOWED_HOSTS: 'lid-radar.herokuapp.com'
             SENDGRID_USERNAME: 'test'
             SENDGRID_PASSWORD: 'test'
             REDIS_URL: 'redis://'
