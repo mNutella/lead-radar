@@ -1,5 +1,5 @@
 from decouple import Csv, config
-# from dj_database_url import parse as db_url
+from dj_database_url import parse as db_url
 
 from .base import *  # noqa
 
@@ -9,20 +9,11 @@ DEBUG = False
 SECRET_KEY = config('SECRET_KEY')
 
 DATABASES = {
-    # 'default': config('DATABASE_URL', cast=db_url),
-    'default': {
-        'ENGINE': "django.db.backends.postgresql_psycopg2",
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-        'HOST': config('DATABASE_URL'),
-        'PORT': config('DATABASE_PORT'),
-    }
+    'default': config('DATABASE_URL', cast=db_url),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'lid-radar.herokuapp.com']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 STATIC_ROOT = base_dir_join('staticfiles')
 STATIC_URL = '/static/'
@@ -30,7 +21,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = base_dir_join('mediafiles')
 MEDIA_URL = '/media/'
 
-SERVER_EMAIL = 'mail@lead-radar.com'
+SERVER_EMAIL = 'mail@lead-radar.ru'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = config('SENDGRID_USERNAME')

@@ -73,16 +73,12 @@ jobs:
           command: pipenv run python manage.py has_missing_migrations --ignore authtools
           environment:
             DJANGO_SETTINGS_MODULE: 'leadradar.settings.local_base'
+            DEBUG_SECRET_KEY: 'secret'
       - run:
           command: pipenv run python manage.py check --deploy
           environment:
             DJANGO_SETTINGS_MODULE: 'leadradar.settings.production'
             SECRET_KEY: "$(python -c 'import uuid; print(uuid.uuid4().hex + uuid.uuid4().hex)')"
-            DATABASE_NAME: 'lead_radar_db'
-            DATABASE_USER: 'juser'
-            DATABASE_PASSWORD: 'Klop1'
-            DATABASE_URL: 'localhost'
-            DATABASE_PORT: '5432'
             ALLOWED_HOSTS: 'lid-radar.herokuapp.com'
             SENDGRID_USERNAME: 'test'
             SENDGRID_PASSWORD: 'test'
