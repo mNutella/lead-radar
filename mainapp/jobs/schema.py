@@ -2,8 +2,8 @@ import graphene
 from cities_light.models import City, Region
 from graphene_django import DjangoObjectType
 
-from .models import Company, Employer, Job, Plan, Subscription, Role
 from .constants import ModelExceptionTypes
+from .models import Company, Employer, Job, Plan, Role, Subscription
 
 
 class EmployerType(DjangoObjectType):

@@ -1,7 +1,7 @@
 from django.conf import settings
+from django.contrib import admin
 # from django.conf.urls import include, url  # django < 2.0
 from django.urls import include, path, re_path
-from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
