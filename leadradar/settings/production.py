@@ -1,5 +1,5 @@
 from decouple import Csv, config
-from dj_database_url import parse as db_url
+# from dj_database_url import parse as db_url
 
 from .base import *  # noqa
 
@@ -39,7 +39,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # Security
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
