@@ -1,7 +1,8 @@
 from .base import *  # noqa
+from decouple import config
 
 
-SECRET_KEY = 'test'
+SECRET_KEY = config('SECRET_KEY')
 
 DATABASES = {
     'default': {
