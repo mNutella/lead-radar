@@ -90,6 +90,8 @@ jobs:
             REDIS_URL: 'redis://'
       - run:
           command: pipenv run coverage run manage.py test
+          environment:
+            SECRET_KEY: "$(python -c 'import uuid; print(uuid.uuid4().hex + uuid.uuid4().hex)')"
       - run:
           command: npm run test
       - run:
