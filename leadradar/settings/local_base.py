@@ -1,5 +1,6 @@
 from .base import *  # noqa
 from decouple import config
+from dj_database_url import parse as db_url
 
 
 DEBUG = True
@@ -9,14 +10,15 @@ HOST = 'http://localhost:8080'
 SECRET_KEY = config('DEBUG_SECRET_KEY')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lead_radar_db',
-        'USER': 'juser',
-        'PASSWORD': 'Klop1',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': config('DATABASE_URL', cast=db_url),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'lead_radar_db',
+    #     'USER': 'juser',
+    #     'PASSWORD': 'Klop1',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 STATIC_ROOT = base_dir_join('staticfiles')
