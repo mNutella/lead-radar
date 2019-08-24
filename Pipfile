@@ -14,7 +14,6 @@ prospector = {version = "==1.1.6.2",extras = ["with-vulture"]}
 safety = "*"
 django-debug-toolbar = "*"
 django-debug-toolbar-request-history = {editable = true,git = "https://github.com/djsutho/django-debug-toolbar-request-history.git",ref = "django-debug-toolbar-2"}
-graphene-django = ">=2.0"
 black = "*"
 
 [packages]
@@ -35,6 +34,7 @@ psutil = "*"
 ipython = "*"
 django-cors-headers = "*"
 django-cities-light = "*"
+graphene-django = ">=2.0"
 
 [requires]
 python_version = "3.6"
