@@ -1,5 +1,5 @@
 {
-  "name": "leadradar",
+  "name": "lid-radar",
   "description": "Leadradar Heroku app.",
   "scripts": {
     "postdeploy": "python manage.py migrate"
