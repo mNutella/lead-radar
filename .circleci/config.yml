@@ -88,6 +88,7 @@ jobs:
             SENDGRID_USERNAME: 'test'
             SENDGRID_PASSWORD: 'test'
             REDIS_URL: 'redis://'
+            GRAPHENE_SCHEMA: 'leadradar.schema.schema'
       - run:
           command: pipenv run coverage run manage.py test
           environment:
