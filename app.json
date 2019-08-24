@@ -1,5 +1,5 @@
 {
-  "name": "lid-radar",
+  "name": "lead-radar",
   "description": "Leadradar Heroku app.",
   "scripts": {
     "postdeploy": "python manage.py migrate"
@@ -7,7 +7,7 @@
   "env": {
     "ALLOWED_HOSTS": {
       "description": "Django ALLOWED_HOSTS setting, e.g.: .appname.herokuapp.com",
-      "value": "lid-radar.herokuapp.com"
+      "value": "lead-radar.herokuapp.com"
     },
     "DISABLE_COLLECTSTATIC": {
       "description": "Disables Heroku collectstatic",
