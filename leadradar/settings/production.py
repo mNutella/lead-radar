@@ -21,6 +21,12 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = base_dir_join('mediafiles')
 MEDIA_URL = '/media/'
 
+# GraphQL
+INSTALLED_APPS += ('graphene_django',)
+GRAPHENE = {
+    'SCHEMA': config('GRAPHENE_SCHEMA') # Where your Graphene schema lives
+}
+
 # SERVER_EMAIL = 'mail@lead-radar.ru'
 
 # EMAIL_HOST = 'smtp.sendgrid.net'

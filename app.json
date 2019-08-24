@@ -25,6 +25,10 @@
       "description": "Django settings Python import path",
       "value": "leadradar.settings.production"
     },
+    "GRAPHENE_SCHEMA": {
+      "description": "Graphene settings Python import path",
+      "value": "leadradar.schema.schema"
+    },
     "SECRET_KEY": {
       "description": "Django SECRET_KEY setting",
       "generator": "secret"

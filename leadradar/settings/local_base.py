@@ -39,6 +39,7 @@ CELERY_TASK_ALWAYS_EAGER = True
 INSTALLED_APPS += ('graphene_django',)
 GRAPHENE = {
     'SCHEMA': 'leadradar.schema.schema' # Where your Graphene schema lives
+    'SCHEMA': config('GRAPHENE_SCHEMA') # Where your Graphene schema lives
 }
 
 # Apps
