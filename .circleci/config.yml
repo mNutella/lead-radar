@@ -79,6 +79,7 @@ jobs:
           environment:
             DJANGO_SETTINGS_MODULE: 'leadradar.settings.local_base'
             DEBUG_SECRET_KEY: 'secret'
+            GRAPHENE_SCHEMA: 'leadradar.schema.schema'
       - run:
           command: pipenv run python manage.py check --deploy
           environment:
