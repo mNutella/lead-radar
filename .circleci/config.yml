@@ -94,6 +94,7 @@ jobs:
           command: pipenv run coverage run manage.py test
           environment:
             SECRET_KEY: "$(python -c 'import uuid; print(uuid.uuid4().hex + uuid.uuid4().hex)')"
+            GRAPHENE_SCHEMA: 'leadradar.schema.schema'
       - run:
           command: npm run test
       - run:
