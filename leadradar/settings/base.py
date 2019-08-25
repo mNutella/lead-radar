@@ -18,31 +18,56 @@ SECURE_HSTS_PRELOAD = True
 
 DEBUG = True
 
-ADMINS = (
-    ('Admin', 'admin@lead-radar.com'),
-)
+ADMINS = (("Admin", "admin@lead-radar.com"),)
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 
-    'corsheaders',
+    "corsheaders",
 
-    'django_js_reverse',
-    'webpack_loader',
-    'import_export',
+    "django_js_reverse",
+    "webpack_loader",
+    "import_export",
+    "graphene_django",
 
-    'common',
-    'users',
+    "common",
+    "users",
+    "cities_light",
+    "mainapp.jobs",
 ]
+
+# Cities Light
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ["ru", "en"]
+# CITIES_LIGHT_INCLUDE_COUNTRIES = ['ru', 'en']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = [
+    "PPL",
+    "PPLA",
+    "PPLA2",
+    "PPLA3",
+    "PPLA4",
+    "PPLC",
+    "PPLF",
+    "PPLG",
+    "PPLL",
+    "PPLR",
+    "PPLS",
+    "STLMT",
+]
+
+# GraphQL
+GRAPHENE = {
+    # "SCHEMA": "leadradar.schema.schema"  # Where your Graphene schema lives
+    'SCHEMA': config('GRAPHENE_SCHEMA') # Where your Graphene schema lives
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -52,56 +77,50 @@ CORS_ALLOW_CREDENTIALS = True
 # )
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'corsheaders.middleware.CorsPostCsrfMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsPostCsrfMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'leadradar.urls'
+ROOT_URLCONF = "leadradar.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [base_dir_join('templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [base_dir_join("templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
         },
-    },
+    }
 ]
 
-WSGI_APPLICATION = 'leadradar.wsgi.application'
+WSGI_APPLICATION = "leadradar.wsgi.application"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -109,25 +128,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATICFILES_DIRS = (
-    base_dir_join('assets'),
-)
+STATICFILES_DIRS = (base_dir_join("assets"),)
 
 # Webpack
 WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': False,  # on DEBUG should be False
-        'STATS_FILE': base_dir_join('webpack-stats.json'),
-        'POLL_INTERVAL': 0.1,
-        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    "DEFAULT": {
+        "CACHE": False,  # on DEBUG should be False
+        "STATS_FILE": base_dir_join("webpack-stats.json"),
+        "POLL_INTERVAL": 0.1,
+        "IGNORE": [".+\.hot-update.js", ".+\.map"],
     },
-    'JQUERY': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': 'jquery-webpack-stats.json',
-    }
+    "JQUERY": {
+        "BUNDLE_DIR_NAME": "bundles/",
+        "STATS_FILE": "jquery-webpack-stats.json",
+    },
 }
 
 # Celery
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"

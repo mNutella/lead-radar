@@ -35,22 +35,6 @@ AUTH_PASSWORD_VALIDATORS = []  # allow easy passwords only on local
 # Celery
 CELERY_TASK_ALWAYS_EAGER = True
 
-# GraphQL
-INSTALLED_APPS += ('graphene_django',)
-GRAPHENE = {
-    'SCHEMA': 'leadradar.schema.schema' # Where your Graphene schema lives
-    # 'SCHEMA': config('GRAPHENE_SCHEMA') # Where your Graphene schema lives
-}
-
-# Apps
-INSTALLED_APPS += ('mainapp.jobs',)
-
-# Cities Light
-INSTALLED_APPS += ('cities_light',)
-CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ru', 'en']
-# CITIES_LIGHT_INCLUDE_COUNTRIES = ['ru', 'en']
-CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS', 'STLMT',]
-
 # Email
 INSTALLED_APPS += ('naomi',)
 EMAIL_BACKEND = 'naomi.mail.backends.naomi.NaomiBackend'
