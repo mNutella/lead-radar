@@ -12,7 +12,7 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jsreverse/', django_js_reverse.views.urls_js, name='js_reverse'),
-    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 
     re_path('', TemplateView.as_view(template_name='mainapp/index.html'), name='home'),
 ]

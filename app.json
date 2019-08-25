@@ -31,7 +31,7 @@
     },
     "APOLLO_URI": {
       "description": "Apollo uri",
-      "value": "https://lead-radar.herokuapp.com/graphql/"
+      "value": "https://lead-radar.herokuapp.com/graphql"
     },
     "SECRET_KEY": {
       "description": "Django SECRET_KEY setting",
