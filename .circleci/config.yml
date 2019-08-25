@@ -57,6 +57,8 @@ jobs:
       
       - run:
           command: npm run build
+          environment:
+            APOLLO_URI: 'http://localhost:8000/graphql/'
       - run:
           command: npm run lint
       # style check

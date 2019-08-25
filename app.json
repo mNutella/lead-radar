@@ -29,6 +29,10 @@
       "description": "Graphene settings Python import path",
       "value": "leadradar.schema.schema"
     },
+    "APOLLO_URI": {
+      "description": "Apollo uri",
+      "value": "https://lead-radar.herokuapp.com/graphql/"
+    },
     "SECRET_KEY": {
       "description": "Django SECRET_KEY setting",
       "generator": "secret"

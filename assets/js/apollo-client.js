@@ -2,7 +2,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: 'http://localhost:8000/graphql/',
+  uri: process.env.APOLLO_URI,
 });
 
 const client = new ApolloClient({
