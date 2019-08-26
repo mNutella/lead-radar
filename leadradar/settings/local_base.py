@@ -11,14 +11,6 @@ SECRET_KEY = config('DEBUG_SECRET_KEY')
 
 DATABASES = {
     'default': config('DATABASE_URL', cast=db_url),
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'lead_radar_db',
-    #     'USER': 'juser',
-    #     'PASSWORD': 'Klop1',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    # }
 }
 
 STATIC_ROOT = base_dir_join('staticfiles')
