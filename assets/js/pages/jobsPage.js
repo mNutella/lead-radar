@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
+import * as JsSearch from 'js-search';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
@@ -10,26 +12,25 @@ import Spinner from '../app/lead-radar/components/Spinner';
 import JOBS from '../app/lead-radar/gql/all_jobs.gql';
 import { withSuspense } from '../utils';
 
-
 const renderError = () => <div>ERROR</div>;
 
 const renderList = jobs => (
   <div className="row jobs-list-container">
     <div className="col-12 p-3">
       <JobsList>
-        {jobs && (
-          jobs.map(
+        {jobs
+          && jobs.map(
             job => job && (
-              <JobItem
-                key={job.id.replace('-', '_')}
-                title={job.role.name}
-                company={job.company.name}
-                link={job.linkToDesc}
-                date={job.createdDate}
-                city={job.location.alternateNames}
-              />
+            <JobItem
+              key={job.id.replace('-', '_')}
+              title={job.role.name}
+              company={job.company.name}
+              link={job.linkToDesc}
+              date={job.createdDate}
+              city={job.location.alternateNames}
+            />
             ),
-          ))}
+          )}
       </JobsList>
     </div>
   </div>
@@ -41,68 +42,35 @@ const renderReceived = (data, error) => {
   return renderList(data);
 };
 
-const useFilter = (query, jobs, error) => {
-  const words = query.split(' ');
-  const [result, setResult] = useState([]);
+const useFilter = (query, data, sApi) => {
+  const [filtered, setFiltered] = useState(data);
 
   useEffect(() => {
-    if (query !== ' ' && !error) {
-      const tempList = [];
+    if (!query) {
+      setFiltered(data);
+    } else {
+      const result = sApi.search(query);
+      setFiltered(result);
+    }
+  }, [query]);
 
-      jobs.forEach((job) => {
-        const lcQuery = query.toLowerCase();
-        const role = job.role.name.toLowerCase();
-        const company = job.company.name.toLowerCase();
-        const city = job.location.alternateNames.toLowerCase();
-        const region = job.location.region.alternateNames.toLowerCase();
-
-        if (role === lcQuery || company === lcQuery || city === lcQuery || region === lcQuery) {
-          tempList.push(job);
-        }
-      });
-
-      if (tempList.length !== 0) {
-        setResult(tempList);
-        return;
-      }
-
-      jobs.forEach((job) => {
-        const role = job.role.name.toLowerCase();
-        const company = job.company.name.toLowerCase();
-        const city = job.location.alternateNames.toLowerCase();
-        const region = job.location.region.alternateNames.toLowerCase();
-        const dups = [];
-
-        words.forEach((word) => {
-          const lcWord = word.toLowerCase();
-
-          if (!dups.includes(job.id) && (role.includes(lcWord)
-            || company.includes(lcWord)
-            || city.includes(lcWord)
-            || region.includes(lcWord))) {
-            tempList.push(job);
-            dups.push(job.id);
-          }
-        });
-      });
-
-      setResult(tempList);
-    } else setResult(jobs);
-  }, [query, jobs]);
-
-  return { jobs: result };
+  return filtered;
 };
 
-const Jobs = ({
-  location,
-}) => {
+const Jobs = ({ location }) => {
   const { state } = location;
-  const query = state ? state.query : '';
+  const initVal = state ? state.query : '';
   const { data, error } = useQuery(JOBS, { suspend: true });
   const { jobs } = data;
 
-  const [val, setVal] = useState(query);
-  const filtered = useFilter(val, jobs, error);
+  const searchApi = new JsSearch.Search('id');
+  searchApi.addIndex(['company', 'name']);
+  searchApi.addIndex(['role', 'name']);
+  searchApi.addIndex(['location', 'alternateNames']);
+  searchApi.addDocuments(jobs);
+
+  const [val, setVal] = useState(initVal);
+  const filteredJobs = useFilter(val, jobs, searchApi);
 
   return (
     <main className="jobs-container">
@@ -118,7 +86,8 @@ const Jobs = ({
                     Достигните
                     {' '}
                     <span className="text-warning">сотен лидеров</span>
-                    , ищущих их следующую возможность.
+                    , ищущих их
+                    следующую возможность.
                   </h1>
                 </div>
               </div>
@@ -137,15 +106,21 @@ const Jobs = ({
                   <div className="col-sm-12">
                     <Search
                       focus
-                      defVal={query}
+                      defVal={initVal}
                       ph="Поиск по Городу, Позиции, Компании"
-                      found={filtered.jobs ? filtered.jobs.length : 0}
+                      found={filteredJobs ? filteredJobs.length : 0}
                       onChange={e => setVal(e.target.value)}
                     />
                   </div>
                 </div>
               </div>
-              {renderReceived(filtered.jobs, error)}
+              {!error ? (
+                renderReceived(filteredJobs)
+              ) : (
+                <p className="text-muted text-center mt-4">
+                  Something went wrong 🤷🏼‍ please refresh the page and try again 🤙🏼
+                </p>
+              )}
             </div>
           </div>
         </div>
