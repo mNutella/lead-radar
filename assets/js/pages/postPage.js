@@ -1,13 +1,14 @@
-/* eslint-disable no-useless-escape */
 import React, { useEffect, useState } from 'react';
 import { useMutation } from 'react-apollo-hooks';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Button from '../app/lead-radar/components/Button';
 import Input from '../app/lead-radar/components/Input';
 import Modal from '../app/lead-radar/components/Modal';
+import CitySelector from '../app/lead-radar/components/CitySelector';
 import { Plan, PricingTable } from '../app/lead-radar/components/PricingTable';
 import RequestStatus from '../app/lead-radar/components/RequestStatus';
 import POST_JOB from '../app/lead-radar/gql/post_job.gql';
+import { CITIES, validEmailRegex, validUrlRegex } from '../constants';
 import { useModal, useRecaptcha } from '../utils';
 
 const useFormValidator = () => {
@@ -18,12 +19,6 @@ const useFormValidator = () => {
     link: '',
     email: '',
   });
-  const validUrlRegex = RegExp(
-    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
-  );
-  const validEmailRegex = RegExp(
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  );
 
   useEffect(() => {
     const tErrors = errors;
@@ -45,7 +40,7 @@ const useFormValidator = () => {
         setErrors(tErrors);
         break;
       case 'location':
-        tErrors[name] = value.length > 0 ? '' : 'Пожалуйста заполните поле!';
+        tErrors[name] = value ? '' : 'Пожалуйста заполните поле!';
         setErrors(tErrors);
         break;
       case 'link':
@@ -81,6 +76,7 @@ const useFormValidator = () => {
   return {
     handleChange,
     errors,
+    validateForm,
     isValid,
   };
 };
@@ -92,13 +88,15 @@ const Post = () => {
   const [link, setLink] = useState('');
   const [email, setEmail] = useState('');
   const { isShow, handleToggleModal, handleCloseModal } = useModal();
-  const { handleChange, errors, isValid } = useFormValidator();
+  const {
+    handleChange, validateForm, errors, isValid,
+  } = useFormValidator();
   const reCaptcha = useRecaptcha();
 
   const [postJob, { loading, hasError }] = useMutation(POST_JOB, {
     variables: {
       role: position,
-      location,
+      location: location && location.value,
       link,
       company,
       contactEmail: email,
@@ -119,6 +117,11 @@ const Post = () => {
         }
       }, 2500);
     }
+  };
+
+  const handleSelectedChange = (selected) => {
+    setLocation(selected);
+    validateForm('location', Boolean(selected));
   };
 
   return (
@@ -169,17 +172,20 @@ const Post = () => {
                 >
                   {errors.role.length > 0 && <span className="text-danger">{errors.role}</span>}
                 </Input>
-                <Input
+                <CitySelector
                   name="location"
                   label="Город"
-                  ph="Ухта"
+                  placeholder="Ухта"
                   classes={['bg-info']}
-                  onChange={e => setLocation(e.target.value)}
+                  searchable
+                  options={CITIES}
+                  onChange={handleSelectedChange}
+                  value={location}
                 >
                   {errors.location.length > 0 && (
                     <span className="text-danger">{errors.location}</span>
                   )}
-                </Input>
+                </CitySelector>
                 <Input
                   name="link"
                   label="Ссылка"
@@ -218,7 +224,6 @@ const Post = () => {
               обращаться к нам.
             </p>
             <ReCAPTCHA
-              className
               sitekey="6LcQTrQUAAAAAC51kTmXt8os3hRoP_jNgi48vPHZ"
               onChange={reCaptcha.handleChange}
             />
