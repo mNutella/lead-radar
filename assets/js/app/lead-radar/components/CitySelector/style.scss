@@ -1,0 +1,20 @@
+.custom-selector {
+  border-radius: .375rem !important;
+  & > .Select-control {
+    border-radius: .375rem !important;
+    & > .Select-multi-value-wrapper {
+      display: table-cell !important;
+      vertical-align: middle !important;
+      & > .Select-value .Select-value-label {
+        vertical-align: text-top;
+      }
+      & > .Select-placeholder {
+        top: 8px;
+      }
+      & > .Select-input {
+        color: #161c2d !important;
+        font-weight: 400 !important;
+      }
+    }
+  }
+}
