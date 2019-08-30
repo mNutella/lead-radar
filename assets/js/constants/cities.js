@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable quote-props */
+/* eslint comma-dangle: ["error", "never"] */
 const CITIES = [
   {
     "value": 3,
