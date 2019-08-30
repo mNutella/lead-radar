@@ -17,6 +17,9 @@ __pycache__/
 # data
 *.dump
 
+# yarn
+yarn.lock
+
 # npm
 node_modules/
 npm-debug.log
