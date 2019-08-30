@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> add one class 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-12"
+  >
+    <a
+      className="btn btn-block p-3 radius"
+      href="#!"
+      role="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Button /> add some classes 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-12"
+  >
+    <a
+      className="btn btn-block p-3 radius border-pill"
+      href="#!"
+      role="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Button /> markup button type "Def" 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-12"
+  >
+    <button
+      className="btn btn-block p-3 "
+      disabled={false}
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Button /> markup button type "Link" 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-12"
+  >
+    <a
+      className="btn btn-block p-3 "
+      href="/home"
+      role="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Button /> render button 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-12"
+  >
+    <a
+      className="btn btn-block p-3 "
+      href="#!"
+      role="button"
+    />
+  </div>
+</div>
+`;
