@@ -33,8 +33,8 @@ whitenoise = "*"
 psutil = "*"
 ipython = "*"
 django-cors-headers = "*"
-django-cities-light = "*"
 graphene-django = ">=2.0"
+django-cities-light = "*"
 
 [requires]
 python_version = "3.6"
