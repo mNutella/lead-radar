@@ -5,7 +5,6 @@ import { NotFound } from '../../pages';
 import routes from '../../routes';
 import Navbar from './components/Navbar';
 
-
 const App = () => (
   <Router>
     <Route
