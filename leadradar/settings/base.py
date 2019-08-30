@@ -46,8 +46,8 @@ INSTALLED_APPS = [
 ]
 
 # Cities Light
-CITIES_LIGHT_TRANSLATION_LANGUAGES = ["ru", "en"]
-# CITIES_LIGHT_INCLUDE_COUNTRIES = ['ru', 'en']
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ["ru"]
+CITIES_LIGHT_INCLUDE_COUNTRIES = ["RU"]
 CITIES_LIGHT_INCLUDE_CITY_TYPES = [
     "PPL",
     "PPLA",
@@ -65,8 +65,7 @@ CITIES_LIGHT_INCLUDE_CITY_TYPES = [
 
 # GraphQL
 GRAPHENE = {
-    # "SCHEMA": "leadradar.schema.schema"  # Where your Graphene schema lives
-    'SCHEMA': config('GRAPHENE_SCHEMA') # Where your Graphene schema lives
+    "SCHEMA": config("GRAPHENE_SCHEMA")  # Where your Graphene schema lives
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
